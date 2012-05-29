@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="libs/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="libs/jogl.jar"/>
+	<classpathentry kind="lib" path="libs/core.jar" sourcepath="/processing-core">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/E:/Schooler/workspace/processing-core/doc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/opengl.jar"/>
+	<classpathentry kind="lib" path="libs/controlP5.jar" sourcepath="E:/Schooler/Documents/Processing/libraries/controlP5/src/controlP5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="libs/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="libs/serial.jar" sourcepath="E:/Schooler/Downloads/processing-1.5.1-windows/processing-1.5.1/modes/java/libraries/serial/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
