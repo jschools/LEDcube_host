@@ -3,6 +3,8 @@ package com.schooler.ledcube;
 import processing.core.PApplet;
 import processing.serial.Serial;
 
+import com.schooler.ledcube.model.Cube;
+
 public class CubeCom {
 
 	private static final String PORT_NAME = "COM3";
@@ -15,6 +17,14 @@ public class CubeCom {
 
 	public CubeCom(PApplet pApplet) {
 		serial = new Serial(pApplet, PORT_NAME, BAUD_RATE, PARITY, DATA_BITS, STOP_BITS);
+	}
+
+	public void writeFullCube(Cube cube) {
+		sendBytes(cube.getRawCube());
+	}
+
+	private void sendBytes(byte[] bytes) {
+		serial.write(bytes);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.schooler.ledcube.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cube {
@@ -31,6 +32,10 @@ public class Cube {
 
 	private int getIdx(int y, int z) {
 		return getIdx(0, y, z);
+	}
+
+	public byte[] getRawCube() {
+		return data;
 	}
 
 	private void set(int y, int z, byte value) {
@@ -70,6 +75,10 @@ public class Cube {
 
 	private void setDirty(int idx) {
 		dirtyList.add(idx);
+	}
+
+	public List<Integer> getDirtyList() {
+		return Collections.unmodifiableList(dirtyList);
 	}
 
 	private void clearDirtyList() {
