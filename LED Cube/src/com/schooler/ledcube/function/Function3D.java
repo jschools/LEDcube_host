@@ -1,11 +1,11 @@
 package com.schooler.ledcube.function;
 
-import com.schooler.ledcube.Viz;
+import com.schooler.ledcube.CubeMain;
 
 
 public abstract class Function3D implements BooleanFunction {
 	
-	private static final float OFFSET = (Viz.DIM - 1) / 2f;
+	private static final float OFFSET = (CubeMain.DIM - 1) / 2f;
 	private static final float EPSILON = 0.5f;
 	
 	public abstract float getY(float x, float z);

@@ -1,8 +1,5 @@
 package com.schooler.ledcube.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Cube {
 
@@ -10,12 +7,10 @@ public class Cube {
 
 	private int dim;
 	private byte[] data;
-	private List<Integer> dirtyList;
 
 	private Cube(int dim) {
 		this.dim = dim;
 		data = new byte[dim * dim];
-		dirtyList = new ArrayList(dim * dim);
 	}
 
 	public Cube() {
@@ -43,10 +38,6 @@ public class Cube {
 
 		byte before = data[idx];
 		data[idx] = value;
-
-		if (before != value) {
-			setDirty(idx);
-		}
 	}
 
 	public void set(int x, int y, int z, boolean on) {
@@ -58,10 +49,6 @@ public class Cube {
 		} else {
 			data[idx] &= ~(1 << x);
 		}
-
-		if (before != data[idx]) {
-			setDirty(idx);
-		}
 	}
 
 	public boolean get(int x, int y, int z) {
@@ -72,21 +59,4 @@ public class Cube {
 	public byte getByte(int y, int z) {
 		return data[getIdx(y, z)];
 	}
-
-	private void setDirty(int idx) {
-		dirtyList.add(idx);
-	}
-
-	public List<Integer> getDirtyList() {
-		return Collections.unmodifiableList(dirtyList);
-	}
-
-	private void clearDirtyList() {
-		dirtyList.clear();
-	}
-
-	public boolean isClean() {
-		return dirtyList.isEmpty();
-	}
-
 }

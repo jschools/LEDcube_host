@@ -13,7 +13,7 @@ public class Evaluator implements Runnable {
 		this.cube = cube;
 	}
 
-	public void evaluate(BooleanFunction function) {
+	public void startEvaluating(BooleanFunction function) {
 		this.function = function;
 		new Thread(this).start();
 	}
