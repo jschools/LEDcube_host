@@ -4,6 +4,7 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
+import com.schooler.ledcube.command.StdinCommander;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.CubeController;
 import com.schooler.ledcube.output.CubeOutput;
@@ -41,6 +42,8 @@ public class CubeMain extends PApplet {
 		cubeController = CubeController.instance;
 		fileOutput = new FileOutput();
 
+		StdinCommander commander = new StdinCommander(this);
+		commander.start();
 	}
 
 	@Override
