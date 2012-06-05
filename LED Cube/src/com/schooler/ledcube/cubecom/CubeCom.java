@@ -1,4 +1,4 @@
-package com.schooler.ledcube;
+package com.schooler.ledcube.cubecom;
 
 import processing.core.PApplet;
 import processing.serial.Serial;
