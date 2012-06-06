@@ -43,7 +43,6 @@ public class CubeMain extends PApplet {
 		fileOutput = new FileOutput();
 
 		StdinCommander commander = new StdinCommander(this);
-		commander.start();
 	}
 
 	@Override

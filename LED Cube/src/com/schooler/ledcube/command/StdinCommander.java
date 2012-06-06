@@ -1,5 +1,6 @@
 package com.schooler.ledcube.command;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,65 +10,53 @@ import com.schooler.ledcube.CubeMain;
 public class StdinCommander {
 
 	/* package */boolean running;
-	private MainThread thread;
 	/* package */Scanner scan;
 	private CubeMain cubeMain;
-	
-	private Map<String, BaseCommand> keyStrokeMap;
+
+	/* package */Map<Character, BaseCommand> keyStrokeMap;
+	/* package */BaseCommand unknownCommand;
 
 	public StdinCommander(CubeMain cubeMain) {
 		running = false;
 		scan = new Scanner(System.in);
-		thread = new MainThread();
+		scan.useDelimiter(".");
 		this.cubeMain = cubeMain;
-		
+
 		initKeyStrokeMap();
-	}
-	
-	private void initKeyStrokeMap() {
-		keyStrokeMap = new HashMap<String, BaseCommand>();
-		keyStrokeMap.put(KeyStroke.PLAY_PAUSE,    new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.NEXT,          new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.PREVIOUS,      new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.REVERSE,       new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.FORWARD,       new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.SPEED_FORWARD, new ResumeCommand(cubeMain));
-//		keyStrokeMap.put(KeyStroke.SPEED_REVERSE, new ResumeCommand(cubeMain));
+
+		cubeMain.registerKeyEvent(this);
 	}
 
-	public void start() {
-		if (!running) {
-			running = true;
-			new Thread(thread).start();
-		}
-	}
-
-	private class MainThread implements Runnable {
-
-		public MainThread() {
-		}
-
-		@Override
-		public void run() {
-
-			String commandInput;
-
-			while (running) {
-				System.out.println("Enter a command: ");
-				commandInput = scan.nextLine();
+	public void keyEvent(KeyEvent event) {
+		if (event.getID() == KeyEvent.KEY_PRESSED) {
+			BaseCommand command = keyStrokeMap.get(Character.valueOf(event.getKeyChar()));
+			if (command == null) {
+				command = unknownCommand;
 			}
+			command.run();
 		}
 	}
-	
-	
+
+	private void initKeyStrokeMap() {
+		keyStrokeMap = new HashMap<Character, BaseCommand>();
+		keyStrokeMap.put(Character.valueOf(KeyStroke.PLAY_PAUSE),    new PlayPauseCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.NEXT),          new NextCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.PREVIOUS),      new PreviousCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.REVERSE),       new ReverseCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.FORWARD),       new ForwardCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_FORWARD), new SpeedForwardCommand(cubeMain));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_REVERSE), new SpeedReverseCommand(cubeMain));
+		unknownCommand = new UnknownCommand(cubeMain);
+	}
+
 	private interface KeyStroke {
-		public static final String PLAY_PAUSE = " ";
-		public static final String NEXT = "d";
-		public static final String PREVIOUS = "a";
-		public static final String REVERSE = "z";
-		public static final String FORWARD = "c";
-		public static final String SPEED_FORWARD = "e";
-		public static final String SPEED_REVERSE = "q";
+		public static final char PLAY_PAUSE = ' ';
+		public static final char NEXT = 'd';
+		public static final char PREVIOUS = 'a';
+		public static final char REVERSE = 'z';
+		public static final char FORWARD = 'c';
+		public static final char SPEED_FORWARD = 'e';
+		public static final char SPEED_REVERSE = 'q';
 	}
 
 }
