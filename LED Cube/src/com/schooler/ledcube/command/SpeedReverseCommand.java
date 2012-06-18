@@ -1,10 +1,10 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeMain;
+import com.schooler.ledcube.CubeApplet;
 
 public class SpeedReverseCommand extends BaseCommand {
 
-	public SpeedReverseCommand(CubeMain cubeMain) {
+	public SpeedReverseCommand(CubeApplet cubeMain) {
 		super(cubeMain);
 	}
 

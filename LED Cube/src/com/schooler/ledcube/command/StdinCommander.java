@@ -5,18 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.schooler.ledcube.CubeMain;
+import com.schooler.ledcube.CubeApplet;
 
 public class StdinCommander {
 
 	/* package */boolean running;
 	/* package */Scanner scan;
-	private CubeMain cubeMain;
+	private CubeApplet cubeMain;
 
 	/* package */Map<Character, BaseCommand> keyStrokeMap;
 	/* package */BaseCommand unknownCommand;
 
-	public StdinCommander(CubeMain cubeMain) {
+	public StdinCommander(CubeApplet cubeMain) {
 		running = false;
 		scan = new Scanner(System.in);
 		scan.useDelimiter(".");

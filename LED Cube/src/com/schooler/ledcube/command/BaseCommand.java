@@ -1,12 +1,12 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeMain;
+import com.schooler.ledcube.CubeApplet;
 
 public abstract class BaseCommand implements Runnable {
 
-	protected CubeMain cubeMain;
+	protected CubeApplet cubeMain;
 
-	public BaseCommand(CubeMain cubeMain) {
+	public BaseCommand(CubeApplet cubeMain) {
 		this.cubeMain = cubeMain;
 	}
 
