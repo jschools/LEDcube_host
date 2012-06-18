@@ -7,11 +7,11 @@ public class Cube {
 
 	private final int dim;
 	private byte[][] frames;
-	private int frameIdx;
+	private State state;
 
 	private Cube(int dim) {
 		this.dim = dim;
-		this.frameIdx = 0;
+		state = new State();
 		this.frames = new byte[DEFAULT_FRAME_COUNT][dim * dim];
 	}
 
@@ -27,12 +27,8 @@ public class Cube {
 		return this.dim;
 	}
 
-	public int getFrameIndex() {
-		return frameIdx;
-	}
-
-	public void setFrameIndex(int frame) {
-		this.frameIdx = frame;
+	public State getState() {
+		return state;
 	}
 
 	private int getIdx(int y, int z) {
@@ -40,11 +36,11 @@ public class Cube {
 	}
 
 	public byte[] getRawCube() {
-		return frames[frameIdx];
+		return getFrameBytes();
 	}
 
 	private byte[] getFrameBytes() {
-		return frames[frameIdx];
+		return frames[state.getFrame()];
 	}
 
 	@SuppressWarnings("unused")
@@ -79,4 +75,44 @@ public class Cube {
 		byte[] data = getFrameBytes();
 		return data[getIdx(y, z)];
 	}
+
+	public class State {
+		public static final float DEFAULT_FRAME_INTERVAL_MS = 1000f / 30f;
+
+		private float frameInterval;
+		private float time;
+		private int frame;
+
+		public State() {
+			frameInterval = DEFAULT_FRAME_INTERVAL_MS;
+			time = 0.0f;
+			frame = 0;
+		}
+
+		public float getFrameInterval() {
+			return frameInterval;
+		}
+
+		public void setFrameInterval(float frameInterval) {
+			this.frameInterval = frameInterval;
+		}
+
+		public int getFrame() {
+			return frame;
+		}
+
+		public void setFrame(int frame) {
+			this.frame = frame;
+		}
+
+		public float getTime() {
+			return time;
+		}
+
+		public void setTime(float time) {
+			this.time = time;
+		}
+
+	}
+
 }
