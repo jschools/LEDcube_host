@@ -1,22 +1,28 @@
 package com.schooler.ledcube.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cube {
 
 	public static final int DEFAULT_DIM = 8;
 	public static final int DEFAULT_FRAME_COUNT = 64;
 
 	private final int dim;
-	private byte[][] frames;
+	protected List<byte[]> frames;
 	private State state;
 
-	private Cube(int dim) {
+	private Cube(int dim, int frameCount) {
 		this.dim = dim;
 		state = new State();
-		this.frames = new byte[DEFAULT_FRAME_COUNT][dim * dim];
+		this.frames = new ArrayList<byte[]>(frameCount);
+		for (int i = 0; i < frameCount; i++) {
+			frames.add(new byte[dim * dim]);
+		}
 	}
 
 	public Cube() {
-		this(DEFAULT_DIM);
+		this(DEFAULT_DIM, DEFAULT_FRAME_COUNT);
 	}
 
 	private int getIdx(int x, int y, int z) {
@@ -25,6 +31,10 @@ public class Cube {
 
 	public int getDim() {
 		return this.dim;
+	}
+
+	public int getFrameCount() {
+		return frames.size();
 	}
 
 	public State getState() {
@@ -40,7 +50,7 @@ public class Cube {
 	}
 
 	private byte[] getFrameBytes() {
-		return frames[state.getFrame()];
+		return frames.get(state.getFrame());
 	}
 
 	@SuppressWarnings("unused")
@@ -79,6 +89,7 @@ public class Cube {
 	public class State {
 		public static final float DEFAULT_FRAME_INTERVAL_MS = 1000f / 30f;
 
+		private boolean loopingEnabled;
 		private float frameInterval;
 		private float time;
 		private int frame;
@@ -87,6 +98,51 @@ public class Cube {
 			frameInterval = DEFAULT_FRAME_INTERVAL_MS;
 			time = 0.0f;
 			frame = 0;
+			loopingEnabled = false;
+		}
+
+		public synchronized void moveToNextFrame() {
+			moveToFrame(frame + 1);
+		}
+
+		public synchronized void moveToPrevFrame() {
+			moveToFrame(frame - 1);
+		}
+
+		public synchronized void moveToFrame(int destFrame) {
+			int newFrame = getConstrainedFrame(destFrame);
+
+			int frameDelta = newFrame - frame;
+			frame += frameDelta;
+			time += frameDelta * frameInterval;
+		}
+
+		public int getConstrainedFrame(int destFrame) {
+			final int frameCount = getFrameCount();
+
+			if (isLoopingEnabled()) {
+				int newFrame = destFrame;
+
+				if (newFrame >= frameCount || frame < 0) {
+					newFrame %= frameCount;
+				}
+
+				if (newFrame < 0) {
+					newFrame += frameCount;
+				}
+
+				return newFrame;
+			}
+
+			return Math.max(Math.min(frameCount - 1, destFrame), 0);
+		}
+
+		public boolean isLoopingEnabled() {
+			return loopingEnabled;
+		}
+
+		public void setLoopingEnabled(boolean loopingEnabled) {
+			this.loopingEnabled = loopingEnabled;
 		}
 
 		public float getFrameInterval() {
@@ -101,18 +157,8 @@ public class Cube {
 			return frame;
 		}
 
-		public void setFrame(int frame) {
-			this.frame = frame;
-		}
-
 		public float getTime() {
 			return time;
 		}
-
-		public void setTime(float time) {
-			this.time = time;
-		}
-
 	}
-
 }
