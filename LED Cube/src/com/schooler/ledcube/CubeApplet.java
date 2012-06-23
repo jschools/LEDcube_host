@@ -4,7 +4,7 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
-import com.schooler.ledcube.command.StdinCommander;
+import com.schooler.ledcube.command.KeyStrokeCommander;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.CubeController;
 import com.schooler.ledcube.output.CubeOutput;
@@ -42,7 +42,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		cubeController = CubeController.instance;
 		fileOutput = new FileOutput();
 
-		StdinCommander commander = new StdinCommander(this);
+		KeyStrokeCommander commander = new KeyStrokeCommander(this);
 	}
 
 	@Override

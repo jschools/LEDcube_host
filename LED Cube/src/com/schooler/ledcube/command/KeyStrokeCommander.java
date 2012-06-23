@@ -3,23 +3,19 @@ package com.schooler.ledcube.command;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 import com.schooler.ledcube.CubeApplet;
 
-public class StdinCommander {
+public class KeyStrokeCommander {
 
 	/* package */boolean running;
-	/* package */Scanner scan;
 	private CubeApplet cubeMain;
 
 	/* package */Map<Character, BaseCommand> keyStrokeMap;
 	/* package */BaseCommand unknownCommand;
 
-	public StdinCommander(CubeApplet cubeMain) {
+	public KeyStrokeCommander(CubeApplet cubeMain) {
 		running = false;
-		scan = new Scanner(System.in);
-		scan.useDelimiter(".");
 		this.cubeMain = cubeMain;
 
 		initKeyStrokeMap();
