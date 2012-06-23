@@ -1,50 +1,43 @@
 package com.schooler.ledcube.manipulator;
 
+import java.util.Arrays;
+
 import com.schooler.ledcube.function.BooleanFunction;
 import com.schooler.ledcube.function.TimeFunction;
 import com.schooler.ledcube.model.Cube;
 
-public class Evaluator implements Runnable {
+public class Evaluator {
 
 	private Cube cube;
-	BooleanFunction function;
+	private BooleanFunction function;
+	private boolean[] frameCached;
 
-	public Evaluator(Cube cube) {
+	public Evaluator(Cube cube, BooleanFunction function) {
 		this.cube = cube;
-	}
-
-	public void startEvaluating(BooleanFunction function) {
 		this.function = function;
-		new Thread(this).start();
+
+		frameCached = new boolean[cube.getFrameCount()];
+		Arrays.fill(frameCached, false);
 	}
 
-	@Override
-	public void run() {
-		while (true) {
-			synchronized (cube) {
-				fill(function);
-			}
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void fill(BooleanFunction function) {
+	public void evaluate() {
 		if (function instanceof TimeFunction) {
-			((TimeFunction) function).setTime(System.currentTimeMillis());
+			System.out.println("Time: " + cube.getState().getTime());
+			((TimeFunction) function).setTime(cube.getState().getTime());
 		}
 
-		int dim = cube.getDim();
-
-		for (int i = 0; i < dim; i++) {
-			for (int j = 0; j < dim; j++) {
-				for (int k = 0; k < dim; k++) {
-					cube.set(i, j, k, function.getValue(i, j, k));
+		int frame = cube.getState().getFrame();
+		if (!frameCached[frame]) {
+			final int dim = cube.getDim();
+			for (int i = 0; i < dim; i++) {
+				for (int j = 0; j < dim; j++) {
+					for (int k = 0; k < dim; k++) {
+						cube.set(i, j, k, function.getValue(i, j, k));
+					}
 				}
 			}
+
+			frameCached[cube.getState().getFrame()] = true;
 		}
 	}
 

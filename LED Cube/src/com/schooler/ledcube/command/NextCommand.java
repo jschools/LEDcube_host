@@ -8,4 +8,11 @@ public class NextCommand extends BaseCommand {
 		super(controller);
 	}
 
+	@Override
+	public void run() {
+		super.run();
+		
+		controller.setPaused(true);
+		controller.nextFrame();
+	}
 }

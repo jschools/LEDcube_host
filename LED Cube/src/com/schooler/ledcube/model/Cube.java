@@ -6,7 +6,7 @@ import java.util.List;
 public class Cube {
 
 	public static final int DEFAULT_DIM = 8;
-	public static final int DEFAULT_FRAME_COUNT = 64;
+	public static final int DEFAULT_FRAME_COUNT = 60;
 
 	private final int dim;
 	protected List<byte[]> frames;
@@ -87,18 +87,18 @@ public class Cube {
 	}
 
 	public class State {
-		public static final float DEFAULT_FRAME_INTERVAL_MS = 1000f / 30f;
+		public static final double DEFAULT_FRAME_INTERVAL_MS = 1000d / 30d;
 
 		private boolean loopingEnabled;
-		private float frameInterval;
-		private float time;
+		private double frameIntervalMs;
+		private double time;
 		private int frame;
 
 		public State() {
-			frameInterval = DEFAULT_FRAME_INTERVAL_MS;
-			time = 0.0f;
+			frameIntervalMs = DEFAULT_FRAME_INTERVAL_MS;
+			time = 0.0d;
 			frame = 0;
-			loopingEnabled = false;
+			loopingEnabled = true;
 		}
 
 		public synchronized void moveToNextFrame() {
@@ -114,7 +114,7 @@ public class Cube {
 
 			int frameDelta = newFrame - frame;
 			frame += frameDelta;
-			time += frameDelta * frameInterval;
+			time += frameDelta * frameIntervalMs;
 		}
 
 		public int getConstrainedFrame(int destFrame) {
@@ -145,19 +145,19 @@ public class Cube {
 			this.loopingEnabled = loopingEnabled;
 		}
 
-		public float getFrameInterval() {
-			return frameInterval;
+		public double getFrameIntervalMs() {
+			return frameIntervalMs;
 		}
 
-		public void setFrameInterval(float frameInterval) {
-			this.frameInterval = frameInterval;
+		public void setFrameInterval(double frameInterval) {
+			this.frameIntervalMs = frameInterval;
 		}
 
 		public int getFrame() {
 			return frame;
 		}
 
-		public float getTime() {
+		public double getTime() {
 			return time;
 		}
 	}
