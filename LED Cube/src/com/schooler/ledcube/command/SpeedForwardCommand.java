@@ -1,11 +1,11 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.model.CubeController;
 
 public class SpeedForwardCommand extends BaseCommand {
 
-	public SpeedForwardCommand(CubeApplet cubeMain) {
-		super(cubeMain);
+	public SpeedForwardCommand(CubeController controller) {
+		super(controller);
 	}
 
 }

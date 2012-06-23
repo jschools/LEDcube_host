@@ -1,13 +1,13 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.model.CubeController;
 
 public abstract class BaseCommand implements Runnable {
 
-	protected CubeApplet cubeMain;
+	protected CubeController controller;
 
-	public BaseCommand(CubeApplet cubeMain) {
-		this.cubeMain = cubeMain;
+	public BaseCommand(CubeController controller) {
+		this.controller = controller;
 	}
 
 	public int getArgCount() {

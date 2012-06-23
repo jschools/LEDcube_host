@@ -1,11 +1,11 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.model.CubeController;
 
 public class PreviousCommand extends BaseCommand {
 
-	public PreviousCommand(CubeApplet cubeMain) {
-		super(cubeMain);
+	public PreviousCommand(CubeController controller) {
+		super(controller);
 	}
 
 }

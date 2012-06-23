@@ -5,11 +5,9 @@ import com.schooler.ledcube.manipulator.Evaluator;
 
 public class CubeController {
 
-	public static final CubeController instance = new CubeController();
-
 	private Cube cube;
 
-	private CubeController() {
+	public CubeController() {
 		cube = new Cube();
 		Evaluator eval = new Evaluator(cube);
 		eval.startEvaluating(new WaveFunction());

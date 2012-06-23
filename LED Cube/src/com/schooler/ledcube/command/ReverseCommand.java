@@ -1,11 +1,11 @@
 package com.schooler.ledcube.command;
 
-import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.model.CubeController;
 
 public class ReverseCommand extends BaseCommand {
 
-	public ReverseCommand(CubeApplet cubeMain) {
-		super(cubeMain);
+	public ReverseCommand(CubeController controller) {
+		super(controller);
 	}
 
 }

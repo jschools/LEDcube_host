@@ -39,10 +39,10 @@ public class CubeApplet extends PApplet implements CubeMain {
 		size(WINDOW_WIDTH, WINDOW_HEIGHT, GRAPHICS_ENGINE);
 		smooth();
 
-		cubeController = CubeController.instance;
+		cubeController = new CubeController();
 		fileOutput = new FileOutput();
 
-		KeyStrokeCommander commander = new KeyStrokeCommander(this);
+		KeyStrokeCommander commander = new KeyStrokeCommander(this, cubeController);
 	}
 
 	@Override
