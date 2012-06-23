@@ -16,6 +16,6 @@ public abstract class BaseCommand implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println(getClass().getSimpleName());
+		// System.out.println(getClass().getSimpleName());
 	}
 }

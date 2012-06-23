@@ -10,7 +10,6 @@ import com.schooler.ledcube.model.CubeController;
 public class KeyStrokeCommander {
 
 	/* package */boolean running;
-	private CubeApplet cubeMain;
 	private CubeController controller;
 
 	/* package */Map<Character, BaseCommand> keyStrokeMap;
@@ -18,7 +17,6 @@ public class KeyStrokeCommander {
 
 	public KeyStrokeCommander(CubeApplet cubeMain, CubeController controller) {
 		running = false;
-		this.cubeMain = cubeMain;
 		this.controller = controller;
 
 		initKeyStrokeMap();
@@ -32,19 +30,20 @@ public class KeyStrokeCommander {
 			if (command == null) {
 				command = unknownCommand;
 			}
-			command.run();
+			new Thread(command).start();
 		}
 	}
 
 	private void initKeyStrokeMap() {
 		keyStrokeMap = new HashMap<Character, BaseCommand>();
-		keyStrokeMap.put(Character.valueOf(KeyStroke.PLAY_PAUSE),    new PlayPauseCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.NEXT),          new NextCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.PREVIOUS),      new PreviousCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.REVERSE),       new ReverseCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.FORWARD),       new ForwardCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_FORWARD), new SpeedForwardCommand(controller));
-		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_REVERSE), new SpeedReverseCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.PLAY_PAUSE),       new PlayPauseCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.NEXT),             new NextCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.PREVIOUS),         new PreviousCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.REVERSE),          new ReverseCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.FORWARD),          new ForwardCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_FORWARD),    new SpeedForwardCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.SPEED_REVERSE),    new SpeedReverseCommand(controller));
+		keyStrokeMap.put(Character.valueOf(KeyStroke.WRITE_ALL_FRAMES), new WriteAllFramesCommand(controller));
 		unknownCommand = new UnknownCommand(controller);
 	}
 
@@ -56,6 +55,7 @@ public class KeyStrokeCommander {
 		public static final char FORWARD = 'c';
 		public static final char SPEED_FORWARD = 'e';
 		public static final char SPEED_REVERSE = 'q';
+		public static final char WRITE_ALL_FRAMES = 'o';
 	}
 
 }

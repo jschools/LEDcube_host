@@ -41,6 +41,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 		cubeController = new CubeController();
 		fileOutput = new FileOutput();
+		cubeController.setCubeOutput(fileOutput);
 
 		KeyStrokeCommander commander = new KeyStrokeCommander(this, cubeController);
 	}

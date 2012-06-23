@@ -45,6 +45,10 @@ public class Cube {
 		return getIdx(0, y, z);
 	}
 
+	public List<byte[]> getFrames() {
+		return frames;
+	}
+
 	public byte[] getRawCube() {
 		return getFrameBytes();
 	}

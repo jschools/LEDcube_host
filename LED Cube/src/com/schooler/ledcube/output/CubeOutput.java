@@ -6,7 +6,7 @@ import com.schooler.ledcube.model.Cube;
 
 public interface CubeOutput {
 
-	public void writeCube(Cube cube);
+	public void writeAllFrames(Cube cube);
 
 	public OutputStream getOutputStream();
 

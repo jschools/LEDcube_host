@@ -2,6 +2,7 @@ package com.schooler.ledcube.model;
 
 import com.schooler.ledcube.function.WaveFunction;
 import com.schooler.ledcube.manipulator.Evaluator;
+import com.schooler.ledcube.output.CubeOutput;
 
 public class CubeController {
 
@@ -12,6 +13,7 @@ public class CubeController {
 	/* package */boolean paused = true;
 	/* package */Evaluator evaluator;
 	/* package */int lastFrame = -1;
+	/* package */CubeOutput cubeOutput;
 
 	public CubeController() {
 		cube = new Cube();
@@ -25,8 +27,16 @@ public class CubeController {
 		return cube;
 	}
 
+	public CubeOutput getCubeOutput() {
+		return cubeOutput;
+	}
+
+	public void setCubeOutput(CubeOutput cubeOutput) {
+		this.cubeOutput = cubeOutput;
+	}
+
 	public void setPlaySpeed(double playSpeed) {
-		System.out.println("Play Speed: " + playSpeed);
+		System.out.println("Speed: " + playSpeed);
 		this.playSpeed = playSpeed;
 	}
 
@@ -48,6 +58,10 @@ public class CubeController {
 
 	public void prevFrame() {
 		state.moveToPrevFrame();
+	}
+
+	public void outputEntireCube() {
+		cubeOutput.writeAllFrames(cube);
 	}
 
 	private class CubeUpdater implements Runnable {
@@ -79,8 +93,10 @@ public class CubeController {
 			}
 
 			if (frame != lastFrame) {
-				// System.out.println("Evaluating at " + state.getFrame());
 				evaluator.evaluate();
+				if (paused) {
+					System.out.println("frame " + frame);
+				}
 			}
 
 			lastFrame = frame;
