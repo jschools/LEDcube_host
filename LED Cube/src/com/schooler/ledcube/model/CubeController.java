@@ -5,13 +5,13 @@ import com.schooler.ledcube.manipulator.Evaluator;
 
 public class CubeController {
 
-	/*package*/ Cube cube;
-	/*package*/ Cube.State state;
+	/* package */Cube cube;
+	/* package */Cube.State state;
 
-	/*package*/ float playSpeed = 1.0f;
-	/*package*/ boolean paused = true;
-	/*package*/ Evaluator evaluator;
-	/*package*/ int lastFrame = -1;
+	/* package */double playSpeed = 1.0f;
+	/* package */boolean paused = true;
+	/* package */Evaluator evaluator;
+	/* package */int lastFrame = -1;
 
 	public CubeController() {
 		cube = new Cube();
@@ -25,12 +25,16 @@ public class CubeController {
 		return cube;
 	}
 
-	public void setPlaySpeed(float playSpeed) {
+	public void setPlaySpeed(double playSpeed) {
+		System.out.println("Play Speed: " + playSpeed);
 		this.playSpeed = playSpeed;
 	}
 
+	public double getPlaySpeed() {
+		return playSpeed;
+	}
+
 	public void setPaused(boolean paused) {
-		System.out.println("setPaused: " + paused);
 		this.paused = paused;
 	}
 
@@ -47,42 +51,39 @@ public class CubeController {
 	}
 
 	private class CubeUpdater implements Runnable {
-		/*package*/ CubeUpdater() {
+		/* package */CubeUpdater() {
 			// prevent synthetic access
 		}
 
 		@Override
 		public void run() {
 			while (true) {
-				try {
-					long sleepTime = (long) (state.getFrameIntervalMs() * playSpeed);
-					// System.out.println("sleeping for " + sleepTime);
-					Thread.sleep(sleepTime);
-					updateState();
-				} catch (InterruptedException e) {
-					// don't care
+				long sleepDuration = (long) ((state.getFrameIntervalMs() / Math.abs(playSpeed)) * 1000000);
+				long wakeTime = System.nanoTime() + sleepDuration;
+				// System.out.println("sleepDuration: " + sleepDuration);
+				while (System.nanoTime() < wakeTime) {
+					Thread.yield();
 				}
+				updateState();
 			}
 		}
-		
+
 		private void updateState() {
-			synchronized (cube) {
-				int frame = state.getFrame();
-				if (!paused && playSpeed != 0) {
-					if (playSpeed > 0) {
-						state.moveToNextFrame();
-					} else {
-						state.moveToPrevFrame();
-					}
+			int frame = state.getFrame();
+			if (!paused && playSpeed != 0) {
+				if (playSpeed > 0) {
+					state.moveToNextFrame();
+				} else {
+					state.moveToPrevFrame();
 				}
-
-				if (frame != lastFrame) {
-					System.out.println("Evaluating at " + state.getFrame());
-					evaluator.evaluate();
-				}
-
-				lastFrame = frame;
 			}
+
+			if (frame != lastFrame) {
+				// System.out.println("Evaluating at " + state.getFrame());
+				evaluator.evaluate();
+			}
+
+			lastFrame = frame;
 		}
 	}
 

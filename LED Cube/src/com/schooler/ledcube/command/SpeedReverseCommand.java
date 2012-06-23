@@ -8,4 +8,11 @@ public class SpeedReverseCommand extends BaseCommand {
 		super(controller);
 	}
 
+	@Override
+	public void run() {
+		super.run();
+
+		controller.setPlaySpeed(controller.getPlaySpeed() - 0.25d);
+	}
+
 }

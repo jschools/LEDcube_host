@@ -22,7 +22,7 @@ public class Evaluator {
 
 	public void evaluate() {
 		if (function instanceof TimeFunction) {
-			System.out.println("Time: " + cube.getState().getTime());
+			// System.out.println("Time: " + cube.getState().getTime());
 			((TimeFunction) function).setTime(cube.getState().getTime());
 		}
 
