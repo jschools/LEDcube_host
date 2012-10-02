@@ -1,6 +1,7 @@
 package com.schooler.ledcube.model;
 
-import com.schooler.ledcube.function.WaveFunction;
+import com.schooler.ledcube.function.Plane;
+import com.schooler.ledcube.function.TextPlaneFunction;
 import com.schooler.ledcube.manipulator.Evaluator;
 import com.schooler.ledcube.output.CubeOutput;
 
@@ -18,7 +19,7 @@ public class CubeController {
 	public CubeController() {
 		cube = new Cube();
 		state = cube.getState();
-		evaluator = new Evaluator(cube, new WaveFunction());
+		evaluator = new Evaluator(cube, new TextPlaneFunction(Plane.PLANE_X, 0, "Welcome to überMIND  "));
 
 		new Thread(new CubeUpdater()).start();
 	}

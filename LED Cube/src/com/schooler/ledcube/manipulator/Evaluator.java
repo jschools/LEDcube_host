@@ -11,17 +11,19 @@ public class Evaluator {
 	private Cube cube;
 	private BooleanFunction function;
 	private boolean[] frameCached;
+	private boolean isTimeFunction;
 
 	public Evaluator(Cube cube, BooleanFunction function) {
 		this.cube = cube;
 		this.function = function;
+		this.isTimeFunction = function instanceof TimeFunction;
 
 		frameCached = new boolean[cube.getFrameCount()];
 		Arrays.fill(frameCached, false);
 	}
 
 	public void evaluate() {
-		if (function instanceof TimeFunction) {
+		if (isTimeFunction) {
 			// System.out.println("Time: " + cube.getState().getTime());
 			((TimeFunction) function).setTime(cube.getState().getTime());
 		}

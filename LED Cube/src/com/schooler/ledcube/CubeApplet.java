@@ -87,19 +87,19 @@ public class CubeApplet extends PApplet implements CubeMain {
 		pushMatrix();
 
 		synchronized (cube) {
-			for (int i = 0; i < DIM; i++) {
+			for (int k = 0; k < DIM; k++) {
 				pushMatrix();
 				for (int j = 0; j < DIM; j++) {
 					pushMatrix();
-					for (int k = 0; k < DIM; k++) {
+					for (int i = 0; i < DIM; i++) {
 						drawLed(cube.get(i, j, k));
-						translate(0, 0, LED_SPACING);
+						translate(LED_SPACING, 0, 0);
 					}
 					popMatrix();
 					translate(0, LED_SPACING, 0);
 				}
 				popMatrix();
-				translate(LED_SPACING, 0, 0);
+				translate(0, 0, LED_SPACING);
 			}
 		}
 

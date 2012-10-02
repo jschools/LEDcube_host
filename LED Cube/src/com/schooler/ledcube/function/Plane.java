@@ -7,7 +7,7 @@ public class Plane implements BooleanFunction {
 	public static final int PLANE_Y = 1;
 	public static final int PLANE_Z = 2;
 
-	private int plane;
+	protected int plane;
 	private boolean on;
 	private int row;
 
