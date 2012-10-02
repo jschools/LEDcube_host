@@ -16,7 +16,7 @@ public class TextPlaneFunction extends Plane implements TimeFunction {
 
 	@Override
 	public void setTime(double millis) {
-		stringIdx = (int) (millis / 300) % text.length();
+		stringIdx = (int) (millis / 33) % text.length();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class TextPlaneFunction extends Plane implements TimeFunction {
 
 			byte[] characterBitmap = font.getChar(text.charAt(stringIdx));
 
-			return (characterBitmap[j] & (1 << k)) > 0;
+			return (characterBitmap[j] & (1 << (7 - k))) > 0;
 		}
 
 		return false;

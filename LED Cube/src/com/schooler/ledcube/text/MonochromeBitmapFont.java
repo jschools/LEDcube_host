@@ -28,7 +28,8 @@ public class MonochromeBitmapFont implements BitmapFont {
 			int lastByte = in.read();
 			while (lastByte != -1) {
 				for (int i = 0; i < CHARACTER_SIZE_BYTES; i++) {
-					characterBitmaps[charIdx][i] = (byte) lastByte;
+					// flip vertically
+					characterBitmaps[charIdx][7 - i] = (byte) lastByte;
 					lastByte = in.read();
 				}
 				charIdx++;

@@ -19,7 +19,7 @@ public class CubeController {
 	public CubeController() {
 		cube = new Cube();
 		state = cube.getState();
-		evaluator = new Evaluator(cube, new TextPlaneFunction(Plane.PLANE_X, 0, "Welcome to überMIND  "));
+		evaluator = new Evaluator(cube, new TextPlaneFunction(Plane.PLANE_X, 7, "Hello, World!"));
 
 		new Thread(new CubeUpdater()).start();
 	}
