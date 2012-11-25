@@ -7,6 +7,7 @@ import java.util.Random;
 import junit.framework.TestCase;
 
 import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.Point3D;
 
 public class CubeTest extends TestCase {
 
@@ -23,7 +24,7 @@ public class CubeTest extends TestCase {
 					boolean val = rand.nextBoolean();
 					cube.set(null, val);
 
-					boolean getVal = cube.get(x, y, z);
+					boolean getVal = cube.get(Point3D.newInstance(x, y, z));
 
 					String message = String.format("%d %d %d", x, y, z);
 
@@ -72,7 +73,7 @@ public class CubeTest extends TestCase {
 		for (Integer x : xOrder) {
 			for (Integer y : yOrder) {
 				for (Integer z : zOrder) {
-					boolean getValue = cube.get(x, y, z);
+					boolean getValue = cube.get(Point3D.newInstance(x.intValue(), y.intValue(), z.intValue()));
 
 					String message = String.format("%d %d %d", x, y, z);
 

@@ -36,10 +36,11 @@ public class Evaluator {
 		int frame = cube.getState().getFrame();
 		if (!frameCached[frame]) {
 			final int dim = cube.getDim();
+
+			Point3D point = Point3D.newInstance();
 			for (int i = 0; i < dim; i++) {
 				for (int j = 0; j < dim; j++) {
 					for (int k = 0; k < dim; k++) {
-						Point3D point = Point3D.newInstance();
 						point.i = i;
 						point.j = j;
 						point.k = k;
@@ -47,6 +48,8 @@ public class Evaluator {
 					}
 				}
 			}
+
+			point.reclaim();
 
 			frameCached[cube.getState().getFrame()] = true;
 		}

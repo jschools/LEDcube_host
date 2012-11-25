@@ -7,10 +7,13 @@ import processing.core.PApplet;
 import com.schooler.ledcube.command.KeyStrokeCommander;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.CubeController;
+import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.output.CubeOutput;
 import com.schooler.ledcube.output.FileOutput;
 
 public class CubeApplet extends PApplet implements CubeMain {
+
+	public static final boolean DEBUG = false;
 
 	public static final String GRAPHICS_ENGINE = P3D;
 	// public static final String GRAPHICS_ENGINE = OPENGL;
@@ -59,8 +62,10 @@ public class CubeApplet extends PApplet implements CubeMain {
 			zoom += dz * 10;
 		}
 
-		// System.out.println(String.format("xRot:%6.2f yRot:%6.2f zoom:%6.2f",
-		// xRot, yRot, zoom));
+		if (DEBUG) {
+			System.out.println(String.format("xRot:%6.2f yRot:%6.2f zoom:%6.2f",
+					Float.valueOf(xRot), Float.valueOf(yRot), Float.valueOf(zoom)));
+		}
 	}
 
 	@Override
@@ -71,7 +76,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public void drawCube(Cube cube) {
 		background(0xffffffff);
 
-		// center
+		// center in window
 		translate(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, zoom);
 
 		// rotate
@@ -86,13 +91,14 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 		pushMatrix();
 
+		Point3D point = Point3D.newInstance();
 		synchronized (cube) {
 			for (int k = 0; k < DIM; k++) {
 				pushMatrix();
 				for (int j = 0; j < DIM; j++) {
 					pushMatrix();
 					for (int i = 0; i < DIM; i++) {
-						drawLed(cube.get(i, j, k));
+						drawLed(cube.get(point.set(i, j, k)));
 						translate(LED_SPACING, 0, 0);
 					}
 					popMatrix();
@@ -102,6 +108,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 				translate(0, 0, LED_SPACING);
 			}
 		}
+		point.reclaim();
 
 		popMatrix();
 	}

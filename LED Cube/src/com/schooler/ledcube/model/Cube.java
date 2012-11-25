@@ -79,10 +79,10 @@ public class Cube {
 		}
 	}
 
-	public boolean get(int x, int y, int z) {
-		int idx = z * dim + y;
+	public boolean get(Point3D point) {
+		int idx = point.k * dim + point.j;
 		byte[] data = getFrameBytes();
-		return (data[idx] & (1 << x)) > 0;
+		return (data[idx] & (1 << point.i)) > 0;
 	}
 
 	public byte getByte(int y, int z) {
