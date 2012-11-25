@@ -53,7 +53,6 @@ public class Point3D {
 	}
 
 	private static synchronized void fillPool() {
-		System.out.println("fill pool");
 		for (int i = 0; i < POOL_FILL_SIZE; i++) {
 			pool.add(new Point3D());
 		}

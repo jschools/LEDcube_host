@@ -14,7 +14,9 @@ public class TranslationManipulator extends FunctionManipulator implements TimeF
 
 	@Override
 	public void setTime(double millis) {
-		steps = (int) (millis / 33);
+		super.setTime(millis);
+
+		steps = (int) (millis / 33d);
 	}
 
 	protected int getSteps() {
@@ -24,8 +26,12 @@ public class TranslationManipulator extends FunctionManipulator implements TimeF
 	@Override
 	public boolean getValue(Point3D point) {
 		Point3D copy = Point3D.copy(point);
+
+		translatePoint(copy);
 		boolean result = getInnerValue(copy);
+
 		Point3D.reclaim(copy);
+
 		return result;
 	}
 

@@ -45,9 +45,9 @@ public class PlaneShifter extends VoxelManipulator implements Runnable {
 					if (row == -1) {
 						tempPlane[u][v] = cube.get(0, u, v);
 					} else if (row == dim - 1) {
-						cube.set(row, u, v, tempPlane[u][v]);
+						cube.set(null, tempPlane[u][v]);
 					} else {
-						cube.set(row, u, v, cube.get(row + 1, u, v));
+						cube.set(null, cube.get(row + 1, u, v));
 					}
 				}
 			}

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.schooler.ledcube.function.BooleanFunction;
 import com.schooler.ledcube.function.TimeFunction;
 import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.Point3D;
 
 public class Evaluator {
 
@@ -38,7 +39,11 @@ public class Evaluator {
 			for (int i = 0; i < dim; i++) {
 				for (int j = 0; j < dim; j++) {
 					for (int k = 0; k < dim; k++) {
-						cube.set(i, j, k, function.getValue(null));
+						Point3D point = Point3D.newInstance();
+						point.i = i;
+						point.j = j;
+						point.k = k;
+						cube.set(point, function.getValue(point));
 					}
 				}
 			}

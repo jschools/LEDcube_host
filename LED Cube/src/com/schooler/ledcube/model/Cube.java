@@ -66,16 +66,16 @@ public class Cube {
 		data[idx] = value;
 	}
 
-	public void set(int x, int y, int z, boolean on) {
-		int idx = z * dim + y;
+	public void set(Point3D point, boolean on) {
+		int idx = point.k * dim + point.j;
 
 		byte[] data = getFrameBytes();
 
 		byte before = data[idx];
 		if (on) {
-			data[idx] |= 1 << x;
+			data[idx] |= 1 << point.i;
 		} else {
-			data[idx] &= ~(1 << x);
+			data[idx] &= ~(1 << point.i);
 		}
 	}
 

@@ -41,7 +41,7 @@ public class Counter extends VoxelManipulator implements Runnable {
 	}
 
 	private void set(int position, boolean on) {
-		cube.set(getX(position), getY(position), getZ(position), on);
+		cube.set(null, on);
 	}
 
 	private int getX(int position) {

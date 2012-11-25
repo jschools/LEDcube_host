@@ -21,7 +21,7 @@ public class CubeTest extends TestCase {
 			for (int y = 0; y < dim; y++) {
 				for (int z = 0; z < dim; z++) {
 					boolean val = rand.nextBoolean();
-					cube.set(x, y, z, val);
+					cube.set(null, val);
 
 					boolean getVal = cube.get(x, y, z);
 
@@ -60,7 +60,7 @@ public class CubeTest extends TestCase {
 		for (Integer x : xOrder) {
 			for (Integer y : yOrder) {
 				for (Integer z : zOrder) {
-					cube.set(x, y, z, testModel[z][y][x]);
+					cube.set(null, testModel[z][y][x]);
 				}
 			}
 		}
