@@ -3,6 +3,8 @@ package com.schooler.ledcube.command;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.schooler.ledcube.CubeApplet;
 import com.schooler.ledcube.model.CubeController;
@@ -14,6 +16,7 @@ public class KeyStrokeCommander {
 
 	/* package */Map<Character, BaseCommand> keyStrokeMap;
 	/* package */BaseCommand unknownCommand;
+	private ExecutorService executor;
 
 	public KeyStrokeCommander(CubeApplet cubeMain, CubeController controller) {
 		running = false;
@@ -22,6 +25,8 @@ public class KeyStrokeCommander {
 		initKeyStrokeMap();
 
 		cubeMain.registerKeyEvent(this);
+
+		executor = Executors.newSingleThreadExecutor();
 	}
 
 	public void keyEvent(KeyEvent event) {
@@ -30,7 +35,7 @@ public class KeyStrokeCommander {
 			if (command == null) {
 				command = unknownCommand;
 			}
-			new Thread(command).start();
+			executor.execute(command);
 		}
 	}
 

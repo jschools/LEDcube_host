@@ -8,6 +8,8 @@ import com.schooler.ledcube.model.Cube;
 
 public class Evaluator {
 
+	private static final boolean DEBUG = false;
+
 	private Cube cube;
 	private BooleanFunction function;
 	private boolean[] frameCached;
@@ -24,7 +26,9 @@ public class Evaluator {
 
 	public void evaluate() {
 		if (isTimeFunction) {
-			// System.out.println("Time: " + cube.getState().getTime());
+			if (DEBUG) {
+				System.out.println("Time: " + cube.getState().getTime());
+			}
 			((TimeFunction) function).setTime(cube.getState().getTime());
 		}
 
