@@ -1,6 +1,7 @@
 package com.schooler.ledcube.function;
 
 import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.model.Point3D;
 
 
 public abstract class Function3D implements BooleanFunction {
@@ -11,9 +12,9 @@ public abstract class Function3D implements BooleanFunction {
 	public abstract float getY(float x, float z);
 	
 	@Override
-	public boolean getValue(int i, int j, int k) {
-		float value = getY((i - OFFSET) / 2f, (k - OFFSET) / 2f);
-		return  (j - OFFSET) <= value + EPSILON && (j - OFFSET) >= value - EPSILON;
+	public boolean getValue(Point3D point) {
+		float value = getY((point.i - OFFSET) / 2f, (point.k - OFFSET) / 2f);
+		return (point.j - OFFSET) <= value + EPSILON && (point.j - OFFSET) >= value - EPSILON;
 	}
 	
 }

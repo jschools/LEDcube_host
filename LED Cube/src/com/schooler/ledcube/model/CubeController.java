@@ -19,6 +19,7 @@ public class CubeController {
 	public CubeController() {
 		cube = new Cube();
 		state = cube.getState();
+
 		evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Katharine"));
 		// evaluator = new Evaluator(cube, new WaveFunction());
 

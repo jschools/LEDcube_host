@@ -1,5 +1,7 @@
 package com.schooler.ledcube.function;
 
+import com.schooler.ledcube.model.Point3D;
+
 
 public class PlaneFunction implements BooleanFunction {
 
@@ -18,15 +20,15 @@ public class PlaneFunction implements BooleanFunction {
 	}
 
 	@Override
-	public boolean getValue(int i, int j, int k) {
+	public boolean getValue(Point3D point) {
 		switch (plane) {
 		case PLANE_X:
-			return (i == row) == on;
+			return (point.i == row) == on;
 		case PLANE_Y:
-			return (j == row) == on;
+			return (point.j == row) == on;
 		case PLANE_Z:
 		default:
-			return (k == row) == on;
+			return (point.k == row) == on;
 		}
 	}
 

@@ -1,5 +1,6 @@
 package com.schooler.ledcube.function;
 
+import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.text.BitmapFont;
 import com.schooler.ledcube.text.MonochromeBitmapFont;
 
@@ -20,8 +21,8 @@ public class TextPlaneFunction extends PlaneFunction implements TimeFunction {
 	}
 
 	@Override
-	public boolean getValue(int i, int j, int k) {
-		boolean inPlane = super.getValue(i, j, k);
+	public boolean getValue(Point3D point) {
+		boolean inPlane = super.getValue(point);
 		if (inPlane) {
 			switch (plane) {
 			case PLANE_X:
@@ -35,7 +36,7 @@ public class TextPlaneFunction extends PlaneFunction implements TimeFunction {
 
 			byte[] characterBitmap = font.getChar(text.charAt(stringIdx));
 
-			return (characterBitmap[j] & (1 << (7 - k))) > 0;
+			return (characterBitmap[point.j] & (1 << (7 - point.k))) > 0;
 		}
 
 		return false;
