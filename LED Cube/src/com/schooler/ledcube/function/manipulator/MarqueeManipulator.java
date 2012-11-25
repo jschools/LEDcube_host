@@ -32,7 +32,7 @@ public class MarqueeManipulator extends TranslationManipulator {
 		double percentOfLoop = (double) steps / (double) PATTERN_STEPS;
 		int perimeterSideLength = 2 * distFromAxis - 1;
 
-		int adjustedSteps = (int) (percentOfLoop * 4 * perimeterSideLength);
+		int adjustedSteps = (int) Math.round(percentOfLoop * 4 * perimeterSideLength);
 
 		for (int i = 0; i < adjustedSteps; i++) {
 			if (inPlusI(point)) {

@@ -23,7 +23,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public static final int LED_SPACING = 15;
 
 	public static final int LED_ON_ARGB = 0x804444ff;
-	public static final int LED_OFF_ARGB = 0x08000000;
+	public static final int LED_OFF_ARGB = 0x04000000;
 	public static final boolean DRAW_OFF_LEDS = true;
 
 	public static final Random rand = new Random();
