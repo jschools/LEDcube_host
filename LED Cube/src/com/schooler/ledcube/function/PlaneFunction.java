@@ -1,7 +1,7 @@
 package com.schooler.ledcube.function;
 
 
-public class Plane implements BooleanFunction {
+public class PlaneFunction implements BooleanFunction {
 
 	public static final int PLANE_X = 0;
 	public static final int PLANE_Y = 1;
@@ -11,7 +11,7 @@ public class Plane implements BooleanFunction {
 	private boolean on;
 	private int row;
 
-	public Plane(int plane, int row, boolean on) {
+	public PlaneFunction(int plane, int row, boolean on) {
 		this.plane = plane;
 		this.row = row;
 		this.on = on;

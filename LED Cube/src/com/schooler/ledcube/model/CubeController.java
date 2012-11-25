@@ -1,25 +1,26 @@
 package com.schooler.ledcube.model;
 
-import com.schooler.ledcube.function.Plane;
+import com.schooler.ledcube.function.PlaneFunction;
 import com.schooler.ledcube.function.TextPlaneFunction;
 import com.schooler.ledcube.manipulator.Evaluator;
 import com.schooler.ledcube.output.CubeOutput;
 
 public class CubeController {
 
-	/* package */Cube cube;
-	/* package */Cube.State state;
+	Cube cube;
+	Cube.State state;
 
-	/* package */double playSpeed = 1.0f;
-	/* package */boolean paused = true;
-	/* package */Evaluator evaluator;
-	/* package */int lastFrame = -1;
-	/* package */CubeOutput cubeOutput;
+	double playSpeed = 1.0f;
+	boolean paused = true;
+	Evaluator evaluator;
+	int lastFrame = -1;
+	CubeOutput cubeOutput;
 
 	public CubeController() {
 		cube = new Cube();
 		state = cube.getState();
-		evaluator = new Evaluator(cube, new TextPlaneFunction(Plane.PLANE_X, 7, "Hello, World!"));
+		evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Katharine"));
+		// evaluator = new Evaluator(cube, new WaveFunction());
 
 		new Thread(new CubeUpdater()).start();
 	}

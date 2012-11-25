@@ -3,7 +3,7 @@ package com.schooler.ledcube.function;
 import com.schooler.ledcube.text.BitmapFont;
 import com.schooler.ledcube.text.MonochromeBitmapFont;
 
-public class TextPlaneFunction extends Plane implements TimeFunction {
+public class TextPlaneFunction extends PlaneFunction implements TimeFunction {
 
 	private BitmapFont font = new MonochromeBitmapFont();
 	private int stringIdx = 0;
