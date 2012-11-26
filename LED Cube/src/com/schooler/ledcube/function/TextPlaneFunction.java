@@ -36,7 +36,7 @@ public class TextPlaneFunction extends PlaneFunction implements TimeFunction {
 
 			byte[] characterBitmap = font.getChar(text.charAt(stringIdx));
 
-			return (characterBitmap[point.j] & (1 << (7 - point.k))) > 0;
+			return (characterBitmap[point.k] & (1 << (7 - point.j))) > 0;
 		}
 
 		return false;

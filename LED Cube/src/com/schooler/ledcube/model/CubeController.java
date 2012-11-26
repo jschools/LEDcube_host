@@ -21,7 +21,7 @@ public class CubeController {
 		cube = new Cube();
 		state = cube.getState();
 
-		evaluator = new Evaluator(cube, new MarqueeManipulator(new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "K")));
+		evaluator = new Evaluator(cube, new MarqueeManipulator(new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "J")));
 		// evaluator = new Evaluator(cube, new WaveFunction());
 
 		new Thread(new CubeUpdater()).start();

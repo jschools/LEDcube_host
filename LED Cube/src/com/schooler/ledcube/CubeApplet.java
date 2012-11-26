@@ -22,7 +22,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public static final int WINDOW_HEIGHT = 800;
 
 	public static final int DIM = 8;
-	public static final int LED_SIZE = 5;
+	public static final int LED_SIZE = 10;
 	public static final int LED_SPACING = 15;
 
 	public static final int LED_ON_ARGB = 0x804444ff;
@@ -33,8 +33,9 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 	private CubeController cubeController;
 	private CubeOutput fileOutput;
-	private float xRot = -3.6f;
-	private float yRot = -3.92f;
+	private float xRot = PI;
+	private float yRot = -3 * PI / 2;
+	private float zRot = PI / 2;
 	private float zoom = 500f;
 
 	@Override
@@ -55,8 +56,8 @@ public class CubeApplet extends PApplet implements CubeMain {
 			float dx = mouseX - pmouseX;
 			float dy = mouseY - pmouseY;
 
-			xRot += -dy * 0.01f;
-			yRot += -dx * 0.01f;
+			xRot += -dx * 0.01f;
+			yRot += -dy * 0.01f;
 		} else if (mouseButton == RIGHT) {
 			float dz = mouseY - pmouseY;
 			zoom += dz * 10;
@@ -74,14 +75,19 @@ public class CubeApplet extends PApplet implements CubeMain {
 	}
 
 	public void drawCube(Cube cube) {
+		// convert system to right-handed
+		scale(1f, 1f, -1f);
+
 		background(0xffffffff);
 
 		// center in window
-		translate(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, zoom);
+		translate(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, -zoom);
 
 		// rotate
+		rotateZ(zRot);
+
 		rotateX(xRot);
-		rotateY(yRot);
+		rotateY(-yRot);
 
 		// start at corner
 		translate(-DIM * LED_SPACING / 2, -DIM * LED_SPACING / 2, -DIM * LED_SPACING / 2);
@@ -89,8 +95,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		// axis
 		drawAxis();
 
-		pushMatrix();
-
+		// draw the cube
 		Point3D point = Point3D.newInstance();
 		synchronized (cube) {
 			for (int k = 0; k < DIM; k++) {
@@ -109,8 +114,6 @@ public class CubeApplet extends PApplet implements CubeMain {
 			}
 		}
 		point.reclaim();
-
-		popMatrix();
 	}
 
 	private void drawLed(boolean on) {

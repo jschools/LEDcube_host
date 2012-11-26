@@ -64,7 +64,7 @@ public class Point3D {
 
 	private static void fillPool() {
 		if (DEBUG) {
-			System.out.println("Point3D fillPool. Probably leaking Point3D's.");
+			System.out.println("Point3D fillPool");
 		}
 		synchronized (pool) {
 			for (int i = 0; i < POOL_FILL_SIZE; i++) {
