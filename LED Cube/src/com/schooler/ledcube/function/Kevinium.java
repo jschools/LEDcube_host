@@ -10,8 +10,8 @@ public class Kevinium extends Function3D implements TimeFunction {
 	}
 	
 	@Override
-	public float getY(float x, float z) {
-		return (float) Math.sin(x * z) * t;
+	public float getZ(float x, float y) {
+		return (float) Math.sin(x * y) * t;
 	}
 	
 }

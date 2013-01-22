@@ -3,7 +3,6 @@ package com.schooler.ledcube.output;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.zip.GZIPOutputStream;
 
@@ -27,7 +26,8 @@ public class FileOutput implements CubeOutput {
 	private void init() {
 		try {
 			os = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(fileName, false)));
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 			os = null;
 		}
@@ -43,13 +43,16 @@ public class FileOutput implements CubeOutput {
 		try {
 			os.writeObject(frames);
 			System.out.println(String.format("Wrote %d frames to %s", Integer.valueOf(frames.size()), fileName));
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			if (os != null) {
 				try {
 					os.close();
-				} catch (IOException e) {
+				}
+				catch (IOException e) {
 					e.printStackTrace();
 				}
 				os = null;
@@ -58,12 +61,12 @@ public class FileOutput implements CubeOutput {
 	}
 
 	@Override
-	public OutputStream getOutputStream() {
-		if (os == null) {
-			init();
-		}
-
-		return os;
+	public void writeFrame(Cube cube) {
+		// no-op
 	}
 
+	@Override
+	public void flush() {
+		// no-op
+	}
 }

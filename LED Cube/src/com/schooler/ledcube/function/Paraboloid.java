@@ -10,8 +10,8 @@ public class Paraboloid extends Function3D implements TimeFunction {
 	}
 	
 	@Override
-	public float getY(float x, float z) {
-		return x * x * t + z * z * t;
+	public float getZ(float x, float y) {
+		return x * x * t + y * y * t;
 	}
 	
 }

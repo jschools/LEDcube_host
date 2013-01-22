@@ -39,6 +39,14 @@ public class CubeController {
 		this.cubeOutput = cubeOutput;
 	}
 
+	public void outputFrame() {
+		if (cubeOutput == null) {
+			return;
+		}
+
+		cubeOutput.writeFrame(cube);
+	}
+
 	public void setPlaySpeed(double playSpeed) {
 		System.out.println("Speed: " + playSpeed);
 		this.playSpeed = playSpeed;
@@ -82,11 +90,17 @@ public class CubeController {
 				while (System.nanoTime() < wakeTime) {
 					Thread.yield();
 				}
-				updateState();
+
+				boolean changed = updateState();
+				if (changed) {
+					outputFrame();
+				}
 			}
 		}
 
-		private void updateState() {
+		private boolean updateState() {
+			boolean changed = false;
+
 			int frame = state.getFrame();
 			if (!paused && playSpeed != 0) {
 				if (playSpeed > 0) {
@@ -94,6 +108,7 @@ public class CubeController {
 				} else {
 					state.moveToPrevFrame();
 				}
+				changed = true;
 			}
 
 			if (frame != lastFrame) {
@@ -104,6 +119,8 @@ public class CubeController {
 			}
 
 			lastFrame = frame;
+
+			return true;
 		}
 	}
 

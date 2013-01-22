@@ -10,7 +10,7 @@ public class WaveFunction extends Function3D implements TimeFunction {
 	}
 	
 	@Override
-	public float getY(float x, float z) {
+	public float getZ(float x, float y) {
 		return (float) (4 * Math.sin(x + t));
 	}
 	

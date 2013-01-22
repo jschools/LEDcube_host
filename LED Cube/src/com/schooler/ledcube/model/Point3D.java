@@ -3,6 +3,8 @@ package com.schooler.ledcube.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.schooler.ledcube.CubeDebug;
+
 public class Point3D {
 	public static final boolean DEBUG = true;
 
@@ -63,9 +65,7 @@ public class Point3D {
 	}
 
 	private static void fillPool() {
-		if (DEBUG) {
-			System.out.println("Point3D fillPool");
-		}
+		CubeDebug.println("Point3D fillPool");
 		synchronized (pool) {
 			for (int i = 0; i < POOL_FILL_SIZE; i++) {
 				pool.add(new Point3D());

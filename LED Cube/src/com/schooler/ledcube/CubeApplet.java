@@ -5,15 +5,12 @@ import java.util.Random;
 import processing.core.PApplet;
 
 import com.schooler.ledcube.command.KeyStrokeCommander;
+import com.schooler.ledcube.cubecom.SerialCubeCom;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.CubeController;
 import com.schooler.ledcube.model.Point3D;
-import com.schooler.ledcube.output.CubeOutput;
-import com.schooler.ledcube.output.FileOutput;
 
 public class CubeApplet extends PApplet implements CubeMain {
-
-	public static final boolean DEBUG = false;
 
 	public static final String GRAPHICS_ENGINE = P3D;
 	// public static final String GRAPHICS_ENGINE = OPENGL;
@@ -22,7 +19,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public static final int WINDOW_HEIGHT = 800;
 
 	public static final int DIM = 8;
-	public static final int LED_SIZE = 10;
+	public static final int LED_SIZE = 6;
 	public static final int LED_SPACING = 15;
 
 	public static final int LED_ON_ARGB = 0x804444ff;
@@ -32,7 +29,6 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public static final Random rand = new Random();
 
 	private CubeController cubeController;
-	private CubeOutput fileOutput;
 	private float xRot = PI;
 	private float yRot = -3 * PI / 2;
 	private float zRot = PI / 2;
@@ -43,10 +39,13 @@ public class CubeApplet extends PApplet implements CubeMain {
 		size(WINDOW_WIDTH, WINDOW_HEIGHT, GRAPHICS_ENGINE);
 		smooth();
 
+		// create cube controller
 		cubeController = new CubeController();
-		fileOutput = new FileOutput();
-		cubeController.setCubeOutput(fileOutput);
 
+		// create output
+		cubeController.setCubeOutput(new SerialCubeCom(this));
+
+		// create commander
 		KeyStrokeCommander commander = new KeyStrokeCommander(this, cubeController);
 	}
 
@@ -58,15 +57,13 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 			xRot += -dx * 0.01f;
 			yRot += -dy * 0.01f;
-		} else if (mouseButton == RIGHT) {
+		}
+		else if (mouseButton == RIGHT) {
 			float dz = mouseY - pmouseY;
 			zoom += dz * 10;
 		}
 
-		if (DEBUG) {
-			System.out.println(String.format("xRot:%6.2f yRot:%6.2f zoom:%6.2f",
-					Float.valueOf(xRot), Float.valueOf(yRot), Float.valueOf(zoom)));
-		}
+		CubeDebug.println(String.format("xRot:%6.2f yRot:%6.2f zoom:%6.2f", Float.valueOf(xRot), Float.valueOf(yRot), Float.valueOf(zoom)));
 	}
 
 	@Override
@@ -157,7 +154,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	}
 
 	public static void main(String args[]) {
-		PApplet.main(new String[] { "com.schooler.ledcube.CubeApplet" });
+		PApplet.main(new String[] { CubeApplet.class.getName() });
 	}
 
 }
