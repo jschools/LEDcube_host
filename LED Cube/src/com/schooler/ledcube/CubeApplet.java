@@ -9,6 +9,7 @@ import com.schooler.ledcube.cubecom.SerialCubeCom;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.CubeController;
 import com.schooler.ledcube.model.Point3D;
+import com.schooler.ledcube.output.CubeOutput;
 
 public class CubeApplet extends PApplet implements CubeMain {
 
@@ -29,6 +30,8 @@ public class CubeApplet extends PApplet implements CubeMain {
 	public static final Random rand = new Random();
 
 	private CubeController cubeController;
+	private CubeOutput cubeOutput;
+
 	private float xRot = PI;
 	private float yRot = -3 * PI / 2;
 	private float zRot = PI / 2;
@@ -43,10 +46,18 @@ public class CubeApplet extends PApplet implements CubeMain {
 		cubeController = new CubeController();
 
 		// create output
-		cubeController.setCubeOutput(new SerialCubeCom(this));
+		cubeOutput = new SerialCubeCom(this);
+		cubeController.setCubeOutput(cubeOutput);
 
 		// create commander
 		KeyStrokeCommander commander = new KeyStrokeCommander(this, cubeController);
+	}
+
+	@Override
+	public void exit() {
+		cubeOutput.closeConnection();
+
+		super.exit();
 	}
 
 	@Override

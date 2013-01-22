@@ -70,8 +70,14 @@ public class SerialCubeCom implements CubeOutput {
 	
 	@Override
 	public void flush() {
-		// TODO Auto-generated method stub
+		// no-op
+	}
 
+	@Override
+	public void closeConnection() {
+		if (isInitialized()) {
+			serial.setDTR(false);
+		}
 	}
 
 	private void sendBytes(byte[] bytes) {

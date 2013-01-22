@@ -10,4 +10,6 @@ public interface CubeOutput {
 
 	public void flush();
 
+	public void closeConnection();
+
 }

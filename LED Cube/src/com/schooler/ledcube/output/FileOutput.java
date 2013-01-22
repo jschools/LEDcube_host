@@ -69,4 +69,9 @@ public class FileOutput implements CubeOutput {
 	public void flush() {
 		// no-op
 	}
+
+	@Override
+	public void closeConnection() {
+		// no-op
+	}
 }
