@@ -1,7 +1,6 @@
 package com.schooler.ledcube.model;
 
-import com.schooler.ledcube.function.PlaneFunction;
-import com.schooler.ledcube.function.TextPlaneFunction;
+import com.schooler.ledcube.function.FrameFunction;
 import com.schooler.ledcube.manipulator.Evaluator;
 import com.schooler.ledcube.output.CubeOutput;
 
@@ -20,8 +19,8 @@ public class CubeController {
 		cube = new Cube();
 		state = cube.getState();
 
-		evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Schooler"));
-		// evaluator = new Evaluator(cube, new WaveFunction());
+		// evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Schooler"));
+		evaluator = new Evaluator(cube, new FrameFunction());
 
 		new Thread(new CubeUpdater()).start();
 	}

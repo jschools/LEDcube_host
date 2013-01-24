@@ -6,7 +6,7 @@ import java.util.List;
 public class Cube {
 
 	public static final int DEFAULT_DIM = 8;
-	public static final int DEFAULT_FRAME_COUNT = 60;
+	public static final int DEFAULT_FRAME_COUNT = 95; // 28; // 60
 
 	private final int dim;
 	protected List<byte[]> frames;
