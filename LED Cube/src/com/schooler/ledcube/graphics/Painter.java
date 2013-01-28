@@ -1,7 +1,19 @@
 package com.schooler.ledcube.graphics;
 
-public class Painter {
+import com.schooler.ledcube.model.Cube;
 
-	// private Cube cube;
+public abstract class Painter {
+
+	private Cube cube;
+
+	public Painter(Cube cube) {
+		this.cube = cube;
+	}
+
+	public abstract void paintCube();
+
+	protected Cube getCube() {
+		return cube;
+	}
 	 
 }

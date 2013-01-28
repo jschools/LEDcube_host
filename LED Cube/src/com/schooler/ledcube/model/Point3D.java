@@ -36,7 +36,7 @@ public class Point3D {
 		reclaim(this);
 	}
 
-	public static Point3D newInstance() {
+	public static Point3D getInstance() {
 		return getPointFromPool();
 	}
 	

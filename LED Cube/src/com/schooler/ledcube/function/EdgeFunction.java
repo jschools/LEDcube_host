@@ -2,7 +2,7 @@ package com.schooler.ledcube.function;
 
 import com.schooler.ledcube.model.Point3D;
 
-public class FrameFunction implements BooleanFunction, TimeFunction {
+public class EdgeFunction implements BooleanFunction, TimeFunction {
 
 	private int dim = 4;
 

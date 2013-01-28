@@ -104,7 +104,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		drawAxis();
 
 		// draw the cube
-		Point3D point = Point3D.newInstance();
+		Point3D point = Point3D.getInstance();
 		synchronized (cube) {
 			for (int k = 0; k < DIM; k++) {
 				pushMatrix();

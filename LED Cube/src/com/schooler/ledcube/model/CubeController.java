@@ -1,7 +1,8 @@
 package com.schooler.ledcube.model;
 
-import com.schooler.ledcube.function.FrameFunction;
-import com.schooler.ledcube.manipulator.Evaluator;
+import com.schooler.ledcube.function.EdgeFunction;
+import com.schooler.ledcube.function.Evaluator;
+import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.output.CubeOutput;
 
 public class CubeController {
@@ -11,7 +12,7 @@ public class CubeController {
 
 	double playSpeed = 1.0f;
 	boolean paused = true;
-	Evaluator evaluator;
+	Painter painter;
 	int lastFrame = -1;
 	CubeOutput cubeOutput;
 
@@ -20,7 +21,7 @@ public class CubeController {
 		state = cube.getState();
 
 		// evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Schooler"));
-		evaluator = new Evaluator(cube, new FrameFunction());
+		painter = new Evaluator(cube, new EdgeFunction());
 
 		new Thread(new CubeUpdater()).start();
 	}
@@ -75,8 +76,9 @@ public class CubeController {
 	}
 
 	private class CubeUpdater implements Runnable {
-		/* package */CubeUpdater() {
-			// prevent synthetic access
+
+		public CubeUpdater() {
+			// prevent synthetic warning
 		}
 
 		@Override
@@ -110,7 +112,7 @@ public class CubeController {
 			}
 
 			if (frame != lastFrame) {
-				evaluator.evaluate();
+				painter.paintCube();
 				if (paused) {
 					System.out.println("frame " + frame);
 				}

@@ -1,43 +1,43 @@
-package com.schooler.ledcube.manipulator;
+package com.schooler.ledcube.function;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-import com.schooler.ledcube.function.BooleanFunction;
-import com.schooler.ledcube.function.TimeFunction;
+import com.schooler.ledcube.CubeDebug;
+import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.Point3D;
 
-public class Evaluator {
+public class Evaluator extends Painter {
 
-	private static final boolean DEBUG = false;
-
-	private Cube cube;
 	private BooleanFunction function;
-	private boolean[] frameCached;
+	private Set<Integer> cachedFrameIndexes;
 	private boolean isTimeFunction;
 
 	public Evaluator(Cube cube, BooleanFunction function) {
-		this.cube = cube;
+		super(cube);
+
 		this.function = function;
 		this.isTimeFunction = function instanceof TimeFunction;
 
-		frameCached = new boolean[cube.getFrameCount()];
-		Arrays.fill(frameCached, false);
+		this.cachedFrameIndexes = new HashSet<Integer>();
 	}
 
-	public void evaluate() {
+	@Override
+	public void paintCube() {
+		Cube cube = getCube();
+
 		if (isTimeFunction) {
-			if (DEBUG) {
-				System.out.println("Time: " + cube.getState().getTime());
-			}
+			CubeDebug.println("Time: " + cube.getState().getTime());
+
 			((TimeFunction) function).setTime(cube.getState().getTime());
 		}
 
 		int frame = cube.getState().getFrame();
-		if (!frameCached[frame]) {
+		if (!cachedFrameIndexes.contains(Integer.valueOf(frame))) {
 			final int dim = cube.getDim();
 
-			Point3D point = Point3D.newInstance();
+			Point3D point = Point3D.getInstance();
 			for (int i = 0; i < dim; i++) {
 				for (int j = 0; j < dim; j++) {
 					for (int k = 0; k < dim; k++) {
@@ -51,7 +51,7 @@ public class Evaluator {
 
 			point.reclaim();
 
-			frameCached[cube.getState().getFrame()] = true;
+			cachedFrameIndexes.add(Integer.valueOf(cube.getState().getFrame()));
 		}
 	}
 
