@@ -41,9 +41,9 @@ public class Evaluator extends Painter {
 			for (int i = 0; i < dim; i++) {
 				for (int j = 0; j < dim; j++) {
 					for (int k = 0; k < dim; k++) {
-						point.i = i;
-						point.j = j;
-						point.k = k;
+						point.x = i;
+						point.y = j;
+						point.z = k;
 						cube.set(point, function.getValue(point));
 					}
 				}

@@ -1,8 +1,7 @@
 package com.schooler.ledcube.model;
 
-import com.schooler.ledcube.function.EdgeFunction;
-import com.schooler.ledcube.function.Evaluator;
 import com.schooler.ledcube.graphics.Painter;
+import com.schooler.ledcube.graphics.RainGenerator;
 import com.schooler.ledcube.output.CubeOutput;
 
 public class CubeController {
@@ -20,8 +19,9 @@ public class CubeController {
 		cube = new Cube();
 		state = cube.getState();
 
-		// evaluator = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Schooler"));
-		painter = new Evaluator(cube, new EdgeFunction());
+		// painter = new Evaluator(cube, new TextPlaneFunction(PlaneFunction.PLANE_X, 7, "Schooler"));
+		// painter = new Evaluator(cube, new EdgeFunction());
+		painter = new RainGenerator(cube);
 
 		new Thread(new CubeUpdater()).start();
 	}

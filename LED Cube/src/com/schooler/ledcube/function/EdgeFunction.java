@@ -16,23 +16,23 @@ public class EdgeFunction implements BooleanFunction, TimeFunction {
 		int edge = dim - 1;
 		
 		boolean result = false;
-		result |= point.i == 0 && point.k == 0;
-		result |= point.i == 0 && point.k == edge;
-		result |= point.i == edge && point.k == 0;
-		result |= point.i == edge && point.k == edge;
-		result &= point.j < dim;
+		result |= point.x == 0 && point.z == 0;
+		result |= point.x == 0 && point.z == edge;
+		result |= point.x == edge && point.z == 0;
+		result |= point.x == edge && point.z == edge;
+		result &= point.y < dim;
 
-		result |= point.j == 0 && point.k == 0;
-		result |= point.j == 0 && point.k == edge;
-		result |= point.j == edge && point.k == 0;
-		result |= point.j == edge && point.k == edge;
-		result &= point.i < dim;
+		result |= point.y == 0 && point.z == 0;
+		result |= point.y == 0 && point.z == edge;
+		result |= point.y == edge && point.z == 0;
+		result |= point.y == edge && point.z == edge;
+		result &= point.x < dim;
 
-		result |= point.i == 0 && point.j == 0;
-		result |= point.i == 0 && point.j == edge;
-		result |= point.i == edge && point.j == 0;
-		result |= point.i == edge && point.j == edge;
-		result &= point.k < dim;
+		result |= point.x == 0 && point.y == 0;
+		result |= point.x == 0 && point.y == edge;
+		result |= point.x == edge && point.y == 0;
+		result |= point.x == edge && point.y == edge;
+		result &= point.z < dim;
 
 		return result;
 	}

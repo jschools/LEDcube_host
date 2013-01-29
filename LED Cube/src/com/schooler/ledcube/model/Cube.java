@@ -30,9 +30,9 @@ public class Cube {
 	}
 
 	public boolean get(Point3D point) {
-		int idx = point.k * dim + point.j;
+		int idx = point.z * dim + point.y;
 		byte[] data = getFrameBytes();
-		return (data[idx] & (1 << point.i)) > 0;
+		return (data[idx] & (1 << point.x)) > 0;
 	}
 
 	public byte getByte(int y, int z) {
@@ -61,15 +61,15 @@ public class Cube {
 	}
 
 	public void set(Point3D point, boolean on) {
-		int idx = point.k * dim + point.j;
+		int idx = point.z * dim + point.y;
 
 		byte[] data = getFrameBytes();
 
 		if (on) {
-			data[idx] |= 1 << point.i;
+			data[idx] |= 1 << point.x;
 		}
 		else {
-			data[idx] &= ~(1 << point.i);
+			data[idx] &= ~(1 << point.x);
 		}
 	}
 

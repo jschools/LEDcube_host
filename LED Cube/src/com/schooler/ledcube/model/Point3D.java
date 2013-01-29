@@ -16,20 +16,24 @@ public class Point3D {
 		fillPool();
 	}
 
-	public int i;
-	public int j;
-	public int k;
+	public int x;
+	public int y;
+	public int z;
 
 	private Point3D() {
-		i = j = k = 0;
+		x = y = z = 0;
 	}
 	
 	public Point3D set(int i, int j, int k) {
-		this.i = i;
-		this.j = j;
-		this.k = k;
+		this.x = i;
+		this.y = j;
+		this.z = k;
 
 		return this;
+	}
+
+	public void reset() {
+		x = y = z = 0;
 	}
 
 	public void reclaim() {
@@ -45,11 +49,11 @@ public class Point3D {
 	}
 
 	public static Point3D copy(Point3D src) {
-		return getPointFromPool().set(src.i, src.j, src.k);
+		return getPointFromPool().set(src.x, src.y, src.z);
 	}
 
 	private static void reclaim(Point3D point) {
-		point.i = point.j = point.k = 0;
+		point.x = point.y = point.z = 0;
 		synchronized (pool) {
 			pool.add(point);
 		}

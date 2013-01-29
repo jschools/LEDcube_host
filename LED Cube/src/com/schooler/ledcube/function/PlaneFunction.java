@@ -23,12 +23,12 @@ public class PlaneFunction implements BooleanFunction {
 	public boolean getValue(Point3D point) {
 		switch (plane) {
 		case PLANE_X:
-			return (point.i == row) == on;
+			return (point.x == row) == on;
 		case PLANE_Y:
-			return (point.j == row) == on;
+			return (point.y == row) == on;
 		case PLANE_Z:
 		default:
-			return (point.k == row) == on;
+			return (point.z == row) == on;
 		}
 	}
 

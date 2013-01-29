@@ -23,10 +23,10 @@ public class MarqueeManipulator extends TranslationManipulator {
 		boolean plusJ = plusI || negI ? false : inPlusJ(point);
 		boolean negJ = plusI || negI || plusJ ? false : inNegJ(point);
 
-		int distFromAxis = plusI ? 4 - point.j :
-                           negI  ? 4 - (SIDE_LEN - point.j) :
-                           plusJ ? 4 - (SIDE_LEN - point.i) :
-						   negJ  ? 4 - point.i :
+		int distFromAxis = plusI ? 4 - point.y :
+                           negI  ? 4 - (SIDE_LEN - point.y) :
+                           plusJ ? 4 - (SIDE_LEN - point.x) :
+						   negJ  ? 4 - point.x :
 						   0;
 
 		double percentOfLoop = (double) steps / (double) PATTERN_STEPS;
@@ -36,34 +36,34 @@ public class MarqueeManipulator extends TranslationManipulator {
 
 		for (int i = 0; i < adjustedSteps; i++) {
 			if (inPlusI(point)) {
-				point.i++;
+				point.x++;
 			}
 			else if (inPlusJ(point)) {
-				point.j++;
+				point.y++;
 			}
 			else if (inNegI(point)) {
-				point.i--;
+				point.x--;
 			}
 			else if (inNegJ(point)) {
-				point.j--;
+				point.y--;
 			}
 		}
 	}
 
 	private static boolean inPlusI(Point3D point) {
-		return point.i >= point.j && point.i + point.j < SIDE_LEN;
+		return point.x >= point.y && point.x + point.y < SIDE_LEN;
 	}
 
 	private static boolean inPlusJ(Point3D point) {
-		return point.i > point.j && point.i + point.j >= SIDE_LEN;
+		return point.x > point.y && point.x + point.y >= SIDE_LEN;
 	}
 
 	private static boolean inNegI(Point3D point) {
-		return point.i <= point.j && point.i + point.j > SIDE_LEN;
+		return point.x <= point.y && point.x + point.y > SIDE_LEN;
 	}
 
 	private static boolean inNegJ(Point3D point) {
-		return point.i < point.j && point.i + point.j <= SIDE_LEN;
+		return point.x < point.y && point.x + point.y <= SIDE_LEN;
 	}
 
 }

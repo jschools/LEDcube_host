@@ -13,8 +13,8 @@ public abstract class Function3D implements BooleanFunction {
 	
 	@Override
 	public boolean getValue(Point3D point) {
-		float value = getZ((point.i - OFFSET) / 2f, (point.j - OFFSET) / 2f);
-		return (point.k - OFFSET) <= value + EPSILON && (point.k - OFFSET) >= value - EPSILON;
+		float value = getZ((point.x - OFFSET) / 2f, (point.y - OFFSET) / 2f);
+		return (point.z - OFFSET) <= value + EPSILON && (point.z - OFFSET) >= value - EPSILON;
 	}
 	
 }
