@@ -1,13 +1,14 @@
-package com.schooler.ledcube.graphics;
+package com.schooler.ledcube.routine;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.Cube;
 import com.schooler.ledcube.model.Point3D;
 
-public class RainGenerator extends Painter {
+public class Rain extends Painter {
 
 	private static final int DROP_COUNT = 6;
 	protected static final Random rand = new Random();
@@ -16,7 +17,7 @@ public class RainGenerator extends Painter {
 	private int currentFrame;
 	private double frameIntervalSec;
 
-	public RainGenerator(Cube cube) {
+	public Rain(Cube cube) {
 		super(cube);
 
 		currentFrame = 0;

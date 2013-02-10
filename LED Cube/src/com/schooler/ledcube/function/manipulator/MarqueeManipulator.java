@@ -6,6 +6,8 @@ import com.schooler.ledcube.model.Point3D;
 
 public class MarqueeManipulator extends TranslationManipulator {
 
+	public static final int FRAMES_PER_CYCLE = 28;
+
 	private static final int DIM = Cube.DEFAULT_DIM;
 	private static final int SIDE_LEN = DIM - 1;
 	private static final int PATTERN_STEPS = SIDE_LEN * 4;

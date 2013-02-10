@@ -83,7 +83,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 	}
 
 	public void drawCube(Cube cube) {
-		// convert system to right-handed
+		// convert coordinate system to right-handed
 		scale(1f, 1f, -1f);
 
 		background(0xffffffff);

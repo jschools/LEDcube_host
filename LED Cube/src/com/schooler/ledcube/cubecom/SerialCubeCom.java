@@ -37,8 +37,14 @@ public class SerialCubeCom implements CubeOutput {
 		public void run() {
 			System.out.printf("Connecting to %s at %d\n", PORT_NAME, Integer.valueOf(BAUD_RATE));
 			serial = new Serial(pApplet, PORT_NAME, BAUD_RATE, PARITY, DATA_BITS, STOP_BITS);
-			serialInitialized = true;
-			System.out.println("Serial initialized");
+			serialInitialized = serial.output != null;
+
+			if (serialInitialized) {
+				System.out.println("Serial initialized");
+			}
+			else {
+				System.out.printf("%s not available", PORT_NAME);
+			}
 		}
 	}
 

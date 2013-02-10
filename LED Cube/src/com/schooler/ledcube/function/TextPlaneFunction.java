@@ -9,15 +9,17 @@ public class TextPlaneFunction extends PlaneFunction implements TimeFunction {
 	private BitmapFont font = new MonochromeBitmapFont();
 	private int stringIdx = 0;
 	private String text;
+	private final double timePerCharacter;
 
-	public TextPlaneFunction(int plane, int row, String text) {
+	public TextPlaneFunction(int plane, int row, String text, double framesPerChar) {
 		super(plane, row, true);
 		this.text = text;
+		this.timePerCharacter = 33 * framesPerChar;
 	}
 
 	@Override
 	public void setTime(double millis) {
-		stringIdx = (int) (millis / 33) % text.length();
+		stringIdx = (int) (millis / timePerCharacter) % text.length();
 	}
 
 	@Override
