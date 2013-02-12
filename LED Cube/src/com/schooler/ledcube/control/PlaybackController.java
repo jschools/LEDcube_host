@@ -1,10 +1,12 @@
-package com.schooler.ledcube.model;
+package com.schooler.ledcube.control;
 
 import com.schooler.ledcube.CubeConfig;
 import com.schooler.ledcube.graphics.Painter;
+import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.Cube.State;
 import com.schooler.ledcube.output.CubeOutput;
 
-public class CubeController {
+public class PlaybackController {
 
 	Cube cube;
 	Cube.State state;
@@ -15,13 +17,13 @@ public class CubeController {
 	int lastFrame = -1;
 	CubeOutput cubeOutput;
 
-	public CubeController() {
+	public PlaybackController() {
 		cube = new Cube();
 		state = cube.getState();
 
 		painter = CubeConfig.ROUTINE.getPainter(cube);
 
-		new Thread(new CubeUpdater()).start();
+		new Thread(new Updater()).start();
 	}
 
 	public Cube getCube() {
@@ -73,9 +75,9 @@ public class CubeController {
 		cubeOutput.writeAllFrames(cube);
 	}
 
-	private class CubeUpdater implements Runnable {
+	private class Updater implements Runnable {
 
-		public CubeUpdater() {
+		public Updater() {
 			// prevent synthetic warning
 		}
 
@@ -84,7 +86,8 @@ public class CubeController {
 			while (true) {
 				long sleepDuration = (long) ((state.getFrameIntervalMs() / Math.abs(playSpeed)) * 1000000);
 				long wakeTime = System.nanoTime() + sleepDuration;
-				// System.out.println("sleepDuration: " + sleepDuration);
+
+				// wait until it's time for the next update
 				while (System.nanoTime() < wakeTime) {
 					Thread.yield();
 				}
@@ -103,7 +106,8 @@ public class CubeController {
 			if (!paused && playSpeed != 0) {
 				if (playSpeed > 0) {
 					state.moveToNextFrame();
-				} else {
+				}
+				else {
 					state.moveToPrevFrame();
 				}
 				changed = true;
@@ -114,11 +118,13 @@ public class CubeController {
 				if (paused) {
 					System.out.println("frame " + frame);
 				}
+
+				changed = true;
 			}
 
 			lastFrame = frame;
 
-			return true;
+			return changed;
 		}
 	}
 

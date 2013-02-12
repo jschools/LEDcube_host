@@ -4,10 +4,10 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
-import com.schooler.ledcube.command.KeyStrokeCommander;
+import com.schooler.ledcube.control.KeyStrokeCommander;
+import com.schooler.ledcube.control.PlaybackController;
 import com.schooler.ledcube.cubecom.SerialCubeCom;
 import com.schooler.ledcube.model.Cube;
-import com.schooler.ledcube.model.CubeController;
 import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.output.CubeOutput;
 
@@ -29,7 +29,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 	public static final Random rand = new Random();
 
-	private CubeController cubeController;
+	private PlaybackController cubeController;
 	private CubeOutput cubeOutput;
 
 	private float xRot = PI;
@@ -43,7 +43,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		smooth();
 
 		// create cube controller
-		cubeController = new CubeController();
+		cubeController = new PlaybackController();
 
 		// create output
 		cubeOutput = new SerialCubeCom(this);

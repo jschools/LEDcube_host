@@ -1,10 +1,9 @@
-package com.schooler.ledcube.command;
+package com.schooler.ledcube.control;
 
-import com.schooler.ledcube.model.CubeController;
 
 public class WriteAllFramesCommand extends BaseCommand {
 
-	public WriteAllFramesCommand(CubeController controller) {
+	public WriteAllFramesCommand(PlaybackController controller) {
 		super(controller);
 	}
 

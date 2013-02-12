@@ -1,10 +1,9 @@
-package com.schooler.ledcube.command;
+package com.schooler.ledcube.control;
 
-import com.schooler.ledcube.model.CubeController;
 
 public class PlayPauseCommand extends BaseCommand {
 
-	public PlayPauseCommand(CubeController controller) {
+	public PlayPauseCommand(PlaybackController controller) {
 		super(controller);
 	}
 

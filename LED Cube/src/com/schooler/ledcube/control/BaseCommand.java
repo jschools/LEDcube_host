@@ -1,12 +1,11 @@
-package com.schooler.ledcube.command;
+package com.schooler.ledcube.control;
 
-import com.schooler.ledcube.model.CubeController;
 
 public abstract class BaseCommand implements Runnable {
 
-	protected CubeController controller;
+	protected PlaybackController controller;
 
-	public BaseCommand(CubeController controller) {
+	public BaseCommand(PlaybackController controller) {
 		this.controller = controller;
 	}
 

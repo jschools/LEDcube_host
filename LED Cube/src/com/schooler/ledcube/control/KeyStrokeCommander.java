@@ -1,4 +1,4 @@
-package com.schooler.ledcube.command;
+package com.schooler.ledcube.control;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -7,18 +7,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.schooler.ledcube.CubeApplet;
-import com.schooler.ledcube.model.CubeController;
 
 public class KeyStrokeCommander {
 
 	/* package */boolean running;
-	private CubeController controller;
+	private PlaybackController controller;
 
 	/* package */Map<Character, BaseCommand> keyStrokeMap;
 	/* package */BaseCommand unknownCommand;
 	private ExecutorService executor;
 
-	public KeyStrokeCommander(CubeApplet cubeMain, CubeController controller) {
+	public KeyStrokeCommander(CubeApplet cubeMain, PlaybackController controller) {
 		running = false;
 		this.controller = controller;
 
