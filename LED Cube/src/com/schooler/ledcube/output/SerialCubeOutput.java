@@ -1,15 +1,14 @@
-package com.schooler.ledcube.cubecom;
+package com.schooler.ledcube.output;
 
 import java.util.List;
 
 import processing.core.PApplet;
 import processing.serial.Serial;
 
-import com.schooler.ledcube.CubeDebug;
 import com.schooler.ledcube.model.CubeFrames;
-import com.schooler.ledcube.output.CubeOutput;
+import com.schooler.ledcube.util.CubeDebug;
 
-public class SerialCubeCom implements CubeOutput {
+public class SerialCubeOutput implements CubeOutput {
 
 	private static final String PORT_NAME = "COM3";
 	private static final int BAUD_RATE = 115200;
@@ -20,7 +19,7 @@ public class SerialCubeCom implements CubeOutput {
 	protected Serial serial;
 	protected boolean serialInitialized;
 
-	public SerialCubeCom(PApplet pApplet) {
+	public SerialCubeOutput(PApplet pApplet) {
 		this.serialInitialized = false;
 
 		new Thread(new InitRunnable(pApplet)).start();

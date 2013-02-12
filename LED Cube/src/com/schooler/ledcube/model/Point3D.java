@@ -3,7 +3,7 @@ package com.schooler.ledcube.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.schooler.ledcube.CubeDebug;
+import com.schooler.ledcube.util.CubeDebug;
 
 public class Point3D {
 	public static final boolean DEBUG = true;

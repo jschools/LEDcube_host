@@ -6,10 +6,11 @@ import processing.core.PApplet;
 
 import com.schooler.ledcube.control.KeyStrokeCommander;
 import com.schooler.ledcube.control.PlaybackController;
-import com.schooler.ledcube.cubecom.SerialCubeCom;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.output.CubeOutput;
+import com.schooler.ledcube.output.SerialCubeOutput;
+import com.schooler.ledcube.util.CubeDebug;
 
 public class CubeApplet extends PApplet implements CubeMain {
 
@@ -46,7 +47,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		cubeController = new PlaybackController();
 
 		// create output
-		cubeOutput = new SerialCubeCom(this);
+		cubeOutput = new SerialCubeOutput(this);
 		cubeController.setCubeOutput(cubeOutput);
 
 		// create commander

@@ -1,4 +1,4 @@
-package com.schooler.ledcube;
+package com.schooler.ledcube.util;
 
 import java.io.PrintStream;
 
