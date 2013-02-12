@@ -6,17 +6,17 @@ import java.util.Random;
 
 import junit.framework.TestCase;
 
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 
 public class CubeTest extends TestCase {
 
 	public void testAllRanges() {
-		final int dim = Cube.DEFAULT_DIM;
+		final int dim = CubeFrames.DEFAULT_DIM;
 
 		Random rand = new Random();
 
-		Cube cube = new Cube();
+		CubeFrames cube = new CubeFrames();
 
 		for (int x = 0; x < dim; x++) {
 			for (int y = 0; y < dim; y++) {
@@ -37,8 +37,8 @@ public class CubeTest extends TestCase {
 	}
 
 	public void testSetAndGetRandomOrders() {
-		final int dim = Cube.DEFAULT_DIM;
-		Cube cube = new Cube();
+		final int dim = CubeFrames.DEFAULT_DIM;
+		CubeFrames cube = new CubeFrames();
 
 		Random rand = new Random();
 

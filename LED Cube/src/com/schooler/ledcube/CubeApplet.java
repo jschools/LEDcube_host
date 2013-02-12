@@ -7,7 +7,7 @@ import processing.core.PApplet;
 import com.schooler.ledcube.control.KeyStrokeCommander;
 import com.schooler.ledcube.control.PlaybackController;
 import com.schooler.ledcube.cubecom.SerialCubeCom;
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.output.CubeOutput;
 
@@ -82,7 +82,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		drawCube(cubeController.getCube());
 	}
 
-	public void drawCube(Cube cube) {
+	public void drawCube(CubeFrames cube) {
 		// convert coordinate system to right-handed
 		scale(1f, 1f, -1f);
 

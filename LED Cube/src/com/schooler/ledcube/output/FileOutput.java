@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.zip.GZIPOutputStream;
 
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 
 public class FileOutput implements CubeOutput {
 
@@ -34,7 +34,7 @@ public class FileOutput implements CubeOutput {
 	}
 
 	@Override
-	public void writeAllFrames(Cube cube) {
+	public void writeAllFrames(CubeFrames cube) {
 		List<byte[]> frames = cube.getFrames();
 		if (os == null) {
 			init();
@@ -61,7 +61,7 @@ public class FileOutput implements CubeOutput {
 	}
 
 	@Override
-	public void writeFrame(Cube cube) {
+	public void writeFrame(CubeFrames cube) {
 		// no-op
 	}
 

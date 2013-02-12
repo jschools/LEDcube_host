@@ -3,7 +3,7 @@ package com.schooler.ledcube.model;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Cube {
+public class CubeFrames {
 
 	public static final int DEFAULT_DIM = 8;
 	public static final int DEFAULT_FRAME_COUNT = 60;
@@ -14,11 +14,11 @@ public class Cube {
 
 	private State state;
 
-	public Cube() {
+	public CubeFrames() {
 		this(DEFAULT_DIM, DEFAULT_FRAME_COUNT);
 	}
 
-	private Cube(int dim, int initialFrameCount) {
+	private CubeFrames(int dim, int initialFrameCount) {
 		this.dim = dim;
 		this.frameLength = dim * dim;
 

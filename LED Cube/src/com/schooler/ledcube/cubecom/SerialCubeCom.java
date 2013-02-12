@@ -6,7 +6,7 @@ import processing.core.PApplet;
 import processing.serial.Serial;
 
 import com.schooler.ledcube.CubeDebug;
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.output.CubeOutput;
 
 public class SerialCubeCom implements CubeOutput {
@@ -53,7 +53,7 @@ public class SerialCubeCom implements CubeOutput {
 	}
 
 	@Override
-	public void writeFrame(Cube cube) {
+	public void writeFrame(CubeFrames cube) {
 		if (isInitialized()) {
 			CubeDebug.println("sending frame " + cube.getState().getFrame());
 			sendBytes(cube.getCurrentFrameBytes());
@@ -61,7 +61,7 @@ public class SerialCubeCom implements CubeOutput {
 	}
 
 	@Override
-	public void writeAllFrames(Cube cube) {
+	public void writeAllFrames(CubeFrames cube) {
 		if (isInitialized()) {
 			final int frameCount = cube.getFrameCount();
 			List<byte[]> frames = cube.getFrames();

@@ -1,24 +1,24 @@
 package com.schooler.ledcube.graphics;
 
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.routine.Routine;
 
 public abstract class Painter implements Routine {
 
-	private Cube cube;
+	private CubeFrames cube;
 
-	public Painter(Cube cube) {
+	public Painter(CubeFrames cube) {
 		this.cube = cube;
 	}
 
 	@Override
-	public Painter getPainter(Cube cube) {
+	public Painter getPainter(CubeFrames cube) {
 		return this;
 	}
 
 	public abstract void paintCube();
 
-	protected Cube getCube() {
+	protected CubeFrames getCube() {
 		return cube;
 	}
 	 

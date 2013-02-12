@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.schooler.ledcube.CubeDebug;
 import com.schooler.ledcube.graphics.Painter;
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 
 public class Evaluator extends Painter {
@@ -14,7 +14,7 @@ public class Evaluator extends Painter {
 	private Set<Integer> cachedFrameIndexes;
 	private boolean isTimeFunction;
 
-	public Evaluator(Cube cube, BooleanFunction function) {
+	public Evaluator(CubeFrames cube, BooleanFunction function) {
 		super(cube);
 
 		this.function = function;
@@ -25,7 +25,7 @@ public class Evaluator extends Painter {
 
 	@Override
 	public void paintCube() {
-		Cube cube = getCube();
+		CubeFrames cube = getCube();
 
 		if (isTimeFunction) {
 			CubeDebug.println("Time: " + cube.getState().getTime());

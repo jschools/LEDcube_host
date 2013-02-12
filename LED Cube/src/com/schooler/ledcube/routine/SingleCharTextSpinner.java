@@ -5,7 +5,7 @@ import com.schooler.ledcube.function.PlaneFunction;
 import com.schooler.ledcube.function.TextPlaneFunction;
 import com.schooler.ledcube.function.manipulator.MarqueeManipulator;
 import com.schooler.ledcube.graphics.Painter;
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 
 public class SingleCharTextSpinner implements Routine {
 
@@ -16,7 +16,7 @@ public class SingleCharTextSpinner implements Routine {
 	}
 
 	@Override
-	public Painter getPainter(Cube cube) {
+	public Painter getPainter(CubeFrames cube) {
 		return new Evaluator(cube, new MarqueeManipulator(new TextPlaneFunction(PlaneFunction.PLANE_X, 7, this.string,
 				MarqueeManipulator.FRAMES_PER_CYCLE)));
 	}

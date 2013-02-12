@@ -2,23 +2,22 @@ package com.schooler.ledcube.control;
 
 import com.schooler.ledcube.CubeConfig;
 import com.schooler.ledcube.graphics.Painter;
-import com.schooler.ledcube.model.Cube;
-import com.schooler.ledcube.model.Cube.State;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.output.CubeOutput;
 
 public class PlaybackController {
 
-	Cube cube;
-	Cube.State state;
+	protected CubeFrames cube;
+	protected CubeFrames.State state;
 
-	double playSpeed = 1.0f;
-	boolean paused = true;
-	Painter painter;
-	int lastFrame = -1;
-	CubeOutput cubeOutput;
+	protected double playSpeed = 1.0f;
+	protected boolean paused = true;
+	protected Painter painter;
+	protected int lastFrame = Integer.MIN_VALUE;
+	protected CubeOutput cubeOutput;
 
 	public PlaybackController() {
-		cube = new Cube();
+		cube = new CubeFrames();
 		state = cube.getState();
 
 		painter = CubeConfig.ROUTINE.getPainter(cube);
@@ -26,7 +25,7 @@ public class PlaybackController {
 		new Thread(new Updater()).start();
 	}
 
-	public Cube getCube() {
+	public CubeFrames getCube() {
 		return cube;
 	}
 
@@ -102,7 +101,6 @@ public class PlaybackController {
 		private boolean updateState() {
 			boolean changed = false;
 
-			int frame = state.getFrame();
 			if (!paused && playSpeed != 0) {
 				if (playSpeed > 0) {
 					state.moveToNextFrame();
@@ -112,6 +110,8 @@ public class PlaybackController {
 				}
 				changed = true;
 			}
+
+			int frame = state.getFrame();
 
 			if (frame != lastFrame) {
 				painter.paintCube();

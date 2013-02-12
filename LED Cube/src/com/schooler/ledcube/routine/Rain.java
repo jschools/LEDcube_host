@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.schooler.ledcube.graphics.Painter;
-import com.schooler.ledcube.model.Cube;
+import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 
 public class Rain extends Painter {
@@ -17,7 +17,7 @@ public class Rain extends Painter {
 	private int currentFrame;
 	private double frameIntervalSec;
 
-	public Rain(Cube cube) {
+	public Rain(CubeFrames cube) {
 		super(cube);
 
 		currentFrame = 0;
@@ -33,8 +33,8 @@ public class Rain extends Painter {
 
 	@Override
 	public void paintCube() {
-		Cube cube = getCube();
-		Cube.State state = cube.getState();
+		CubeFrames cube = getCube();
+		CubeFrames.State state = cube.getState();
 		int frame = state.getFrame();
 		double time = state.getTime();
 
@@ -82,7 +82,7 @@ public class Rain extends Painter {
 			}
 		}
 
-		public void draw(Cube cube) {
+		public void draw(CubeFrames cube) {
 			if (isExpired()) {
 				return;
 			}
@@ -111,7 +111,7 @@ public class Rain extends Painter {
 		}
 
 		public void reset() {
-			Cube cube = getCube();
+			CubeFrames cube = getCube();
 			int cubeDim = cube.getDim();
 
 			x = rand.nextInt(cubeDim);
