@@ -3,9 +3,9 @@ package com.schooler.ledcube.function;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
+import com.schooler.ledcube.painter.Painter;
 import com.schooler.ledcube.util.CubeDebug;
 
 public class Evaluator extends Painter {

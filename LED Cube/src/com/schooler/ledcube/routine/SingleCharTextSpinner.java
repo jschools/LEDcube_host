@@ -4,8 +4,8 @@ import com.schooler.ledcube.function.Evaluator;
 import com.schooler.ledcube.function.PlaneFunction;
 import com.schooler.ledcube.function.TextPlaneFunction;
 import com.schooler.ledcube.function.manipulator.MarqueeManipulator;
-import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.CubeFrames;
+import com.schooler.ledcube.painter.Painter;
 
 public class SingleCharTextSpinner implements Routine {
 

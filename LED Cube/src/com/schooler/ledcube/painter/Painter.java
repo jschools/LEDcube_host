@@ -1,4 +1,4 @@
-package com.schooler.ledcube.graphics;
+package com.schooler.ledcube.painter;
 
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.routine.Routine;

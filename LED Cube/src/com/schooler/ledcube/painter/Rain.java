@@ -1,10 +1,9 @@
-package com.schooler.ledcube.routine;
+package com.schooler.ledcube.painter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 

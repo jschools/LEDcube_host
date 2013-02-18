@@ -1,9 +1,9 @@
 package com.schooler.ledcube.control;
 
 import com.schooler.ledcube.CubeConfig;
-import com.schooler.ledcube.graphics.Painter;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.output.CubeOutput;
+import com.schooler.ledcube.painter.Painter;
 
 public class PlaybackController {
 
