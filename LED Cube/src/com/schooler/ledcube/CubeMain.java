@@ -5,4 +5,6 @@ package com.schooler.ledcube;
  */
 public interface CubeMain {
 
+	public static final int CUBE_DIM = 8;
+
 }

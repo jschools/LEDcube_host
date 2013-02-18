@@ -24,7 +24,7 @@ public class CubeTest extends TestCase {
 					boolean val = rand.nextBoolean();
 					cube.set(null, val);
 
-					boolean getVal = cube.get(Point3D.newInstance(x, y, z));
+					boolean getVal = cube.get(Point3D.getInstance(x, y, z));
 
 					String message = String.format("%d %d %d", x, y, z);
 
@@ -73,7 +73,7 @@ public class CubeTest extends TestCase {
 		for (Integer x : xOrder) {
 			for (Integer y : yOrder) {
 				for (Integer z : zOrder) {
-					boolean getValue = cube.get(Point3D.newInstance(x.intValue(), y.intValue(), z.intValue()));
+					boolean getValue = cube.get(Point3D.getInstance(x.intValue(), y.intValue(), z.intValue()));
 
 					String message = String.format("%d %d %d", x, y, z);
 

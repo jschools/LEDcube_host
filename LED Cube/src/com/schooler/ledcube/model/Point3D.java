@@ -3,10 +3,10 @@ package com.schooler.ledcube.model;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.schooler.ledcube.CubeMain;
 import com.schooler.ledcube.util.CubeDebug;
 
 public class Point3D {
-	public static final boolean DEBUG = true;
 
 	private static final int POOL_FILL_SIZE = 20;
 
@@ -32,6 +32,22 @@ public class Point3D {
 		return this;
 	}
 
+	public void constrainToCube() {
+		x = constrainDimensionToCube(x);
+		y = constrainDimensionToCube(y);
+		z = constrainDimensionToCube(z);
+	}
+
+	private static int constrainDimensionToCube(int dim) {
+		return Math.max(0, Math.min(CubeMain.CUBE_DIM, dim));
+	}
+
+	public void add(Point3D other) {
+		x += other.x;
+		y += other.y;
+		z += other.z;
+	}
+
 	public void reset() {
 		x = y = z = 0;
 	}
@@ -44,7 +60,7 @@ public class Point3D {
 		return getPointFromPool();
 	}
 	
-	public static Point3D newInstance(int i, int j, int k) {
+	public static Point3D getInstance(int i, int j, int k) {
 		return getPointFromPool().set(i, j, k);
 	}
 
