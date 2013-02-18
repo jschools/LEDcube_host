@@ -16,7 +16,7 @@ public abstract class Painter implements Routine {
 		return this;
 	}
 
-	public abstract void paintCube();
+	public abstract void paint();
 
 	protected CubeFrames getCube() {
 		return cube;

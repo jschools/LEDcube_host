@@ -24,7 +24,7 @@ public class Evaluator extends Painter {
 	}
 
 	@Override
-	public void paintCube() {
+	public void paint() {
 		CubeFrames cube = getCube();
 
 		if (isTimeFunction) {

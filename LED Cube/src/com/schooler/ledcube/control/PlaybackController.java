@@ -114,7 +114,7 @@ public class PlaybackController {
 			int frame = state.getFrame();
 
 			if (frame != lastFrame) {
-				painter.paintCube();
+				painter.paint();
 				if (paused) {
 					System.out.println("frame " + frame);
 				}

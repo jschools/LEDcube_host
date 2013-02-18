@@ -32,7 +32,7 @@ public class Rain extends Painter {
 	}
 
 	@Override
-	public void paintCube() {
+	public void paint() {
 		CubeFrames cube = getCube();
 		CubeFrames.State state = cube.getState();
 		int frame = state.getFrame();
