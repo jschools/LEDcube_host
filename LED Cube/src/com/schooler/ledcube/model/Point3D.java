@@ -39,7 +39,7 @@ public class Point3D {
 	}
 
 	private static int constrainDimensionToCube(int dim) {
-		return Math.max(0, Math.min(CubeMain.CUBE_DIM, dim));
+		return Math.max(0, Math.min(CubeMain.CUBE_DIM - 1, dim));
 	}
 
 	public void add(Point3D other) {

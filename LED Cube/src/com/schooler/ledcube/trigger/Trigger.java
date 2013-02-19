@@ -1,7 +1,7 @@
 package com.schooler.ledcube.trigger;
 
 
-public class Trigger {
+public abstract class Trigger {
 
 	private TriggerSet triggerSet;
 	private int channel;
@@ -10,6 +10,8 @@ public class Trigger {
 		this.triggerSet = triggerSet;
 		this.channel = channel;
 	}
+
+	public abstract int getNullValue();
 
 	public int getIntValue() {
 		return triggerSet.getTriggerValue(channel);

@@ -1,5 +1,6 @@
 package com.schooler.ledcube.routine;
 
+
 import com.schooler.ledcube.function.Evaluator;
 import com.schooler.ledcube.function.PlaneFunction;
 import com.schooler.ledcube.function.TextPlaneFunction;

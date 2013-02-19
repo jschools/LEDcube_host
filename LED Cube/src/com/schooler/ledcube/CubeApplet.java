@@ -14,6 +14,8 @@ import com.schooler.ledcube.util.CubeDebug;
 
 public class CubeApplet extends PApplet implements CubeMain {
 
+	private static CubeApplet instance;
+
 	public static final String GRAPHICS_ENGINE = P3D;
 	// public static final String GRAPHICS_ENGINE = OPENGL;
 
@@ -40,6 +42,8 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 	@Override
 	public void setup() {
+		instance = this;
+
 		size(WINDOW_WIDTH, WINDOW_HEIGHT, GRAPHICS_ENGINE);
 		smooth();
 
@@ -163,6 +167,10 @@ public class CubeApplet extends PApplet implements CubeMain {
 		popMatrix();
 
 		popMatrix();
+	}
+
+	public static CubeApplet getInstance() {
+		return instance;
 	}
 
 	public static void main(String args[]) {

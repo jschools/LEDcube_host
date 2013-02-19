@@ -16,6 +16,11 @@ public class TranslationTrigger extends Trigger {
 		super(triggerSet, channel);
 	}
 
+	@Override
+	public int getNullValue() {
+		return NONE;
+	}
+
 	public void getVector(Point3D point) {
 		int value = getIntValue();
 
@@ -39,6 +44,30 @@ public class TranslationTrigger extends Trigger {
 		if ((value & NEG_Z) > 0) {
 			point.z -= 1;
 		}
+	}
+
+	public static int convertVector(Point3D point) {
+		int value = NONE;
+		if (point.x > 0) {
+			value |= POS_X;
+		}
+		else if (point.x < 0) {
+			value |= NEG_X;
+		}
+		if (point.y > 0) {
+			value |= POS_Y;
+		}
+		else if (point.y < 0) {
+			value |= NEG_Y;
+		}
+		if (point.z > 0) {
+			value |= POS_Z;
+		}
+		else if (point.z < 0) {
+			value |= NEG_Z;
+		}
+
+		return value;
 	}
 
 }
