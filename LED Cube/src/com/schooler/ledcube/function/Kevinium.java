@@ -6,7 +6,7 @@ public class Kevinium extends Function3D implements TimeFunction {
 	
 	@Override
 	public void setTime(double time) {
-		t = (float) (time / 318.47d);
+		t = (float) Math.sin(Math.toRadians(time / 333d));
 	}
 	
 	@Override

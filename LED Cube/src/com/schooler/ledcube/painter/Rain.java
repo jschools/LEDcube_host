@@ -9,7 +9,7 @@ import com.schooler.ledcube.model.Point3D;
 
 public class Rain extends Painter {
 
-	private static final int DROP_COUNT = 6;
+	private static final int DROP_COUNT = 16;
 	protected static final Random rand = new Random();
 	
 	private List<RainDrop> rainDrops;
@@ -115,7 +115,7 @@ public class Rain extends Painter {
 
 			x = rand.nextInt(cubeDim);
 			y = rand.nextInt(cubeDim);
-			height = rand.nextFloat() * (FALL_HEIGHT_M + STEP_SPACING_M);
+			height = (rand.nextFloat() + 1f) * (FALL_HEIGHT_M + STEP_SPACING_M);
 			zVelocity = 0;
 		}
 	}
