@@ -1,9 +1,7 @@
 package com.schooler.ledcube;
 
-import com.schooler.ledcube.model.CubeFrames;
-import com.schooler.ledcube.painter.Painter;
-import com.schooler.ledcube.painter.Rain;
 import com.schooler.ledcube.routine.Routine;
+import com.schooler.ledcube.routine.SingleCharTextSpinner;
 
 
 
@@ -16,16 +14,15 @@ public class CubeConfig {
 	// }
 	// };
 
-	// public static Routine ROUTINE = new SingleCharTextSpinner("Happy Birthday Mary! ");
+	public static Routine ROUTINE = new SingleCharTextSpinner("Yo momma so fat! ");
 
-
-	public static Routine ROUTINE = new Routine() {
-		@Override
-		public Painter getPainter(CubeFrames cube) {
-			return new Rain(cube);
-		}
-
-	};
+	// public static Routine ROUTINE = new Routine() {
+	// @Override
+	// public Painter getPainter(CubeFrames cube) {
+	// return new Evaluator(cube, new MarqueeManipulator(new WaveFunction()));
+	// }
+	//
+	// };
 
 	
 	// new Evaluator(cube, new Paraboloid());
