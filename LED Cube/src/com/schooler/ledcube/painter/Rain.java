@@ -102,7 +102,7 @@ public class Rain extends Painter {
 				}
 			}
 
-			point.reclaim();
+			point.recycle();
 		}
 
 		public boolean isExpired() {

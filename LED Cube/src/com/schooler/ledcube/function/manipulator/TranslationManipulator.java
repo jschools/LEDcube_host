@@ -30,7 +30,7 @@ public class TranslationManipulator extends FunctionManipulator implements TimeF
 		translatePoint(copy);
 		boolean result = getInnerValue(copy);
 
-		copy.reclaim();
+		copy.recycle();
 
 		return result;
 	}

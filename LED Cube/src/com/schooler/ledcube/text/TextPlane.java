@@ -32,8 +32,8 @@ public class TextPlane {
 			
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
-					boolean value = (charBytes[i] & (1 << (7 - j))) > 0;
-					bitmap.set(charIdx * 8, j, value);
+					boolean value = (charBytes[7 - j] & (1 << i)) > 0;
+					bitmap.set(charIdx * 8 + (7 - i), j, value);
 				}
 			}
 		}

@@ -25,13 +25,19 @@ public class ArrayBitmap2D implements Bitmap2D {
 
 	@Override
 	public void set(int x, int y, boolean value) {
-		ensureSize(x, y);
-		data[x][y] = value;
+		if (x >= 0 && y >= 0) {
+			ensureSize(x, y);
+			data[x][y] = value;
+		}
 	}
 
 	@Override
 	public boolean get(int x, int y) {
-		return data[x][y];
+		if (withinBounds(x, y) && x >= 0 && y >= 0) {
+			return data[x][y];
+		}
+
+		return false;
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class ArrayBitmap2D implements Bitmap2D {
 			int prevHeight = this.height;
 			boolean[][] prevData = this.data;
 
-			init(Math.max(x, prevWidth), Math.max(y, prevHeight));
+			init(Math.max(x + 1, prevWidth), Math.max(y + 1, prevHeight));
 
 			// copy old data into new array
 			for (int i = 0; i < prevWidth; i++) {

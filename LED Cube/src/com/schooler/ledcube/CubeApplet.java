@@ -126,7 +126,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 				translate(0, 0, LED_SPACING);
 			}
 		}
-		point.reclaim();
+		point.recycle();
 	}
 
 	private void drawLed(boolean on) {

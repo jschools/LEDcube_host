@@ -49,7 +49,7 @@ public class Evaluator extends Painter {
 				}
 			}
 
-			point.reclaim();
+			point.recycle();
 
 			cachedFrameIndexes.add(Integer.valueOf(cube.getState().getFrame()));
 		}

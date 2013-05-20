@@ -52,7 +52,7 @@ public class Point3D {
 		x = y = z = 0;
 	}
 
-	public void reclaim() {
+	public void recycle() {
 		reclaim(this);
 	}
 
