@@ -5,7 +5,6 @@ import java.util.Random;
 import processing.core.PApplet;
 
 import com.schooler.ledcube.control.KeyStrokeCommander;
-import com.schooler.ledcube.control.PlaybackController;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.output.CubeOutput;
@@ -47,7 +46,7 @@ public class CubeApplet extends PApplet implements CubeMain {
 		size(WINDOW_WIDTH, WINDOW_HEIGHT, GRAPHICS_ENGINE);
 		smooth();
 
-		// create cube controller
+		// create playback controller
 		cubeController = new PlaybackController();
 
 		// create output

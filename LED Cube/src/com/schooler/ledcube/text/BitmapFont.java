@@ -4,4 +4,6 @@ public interface BitmapFont {
 
 	public byte[] getChar(char c);
 
+	public int getWidth(char c);
+
 }

@@ -21,21 +21,33 @@ public class TextPlane {
 
 	private void setTextInternal(String text) {
 		this.text = text;
-		bitmap = new ArrayBitmap2D(8 * text.length(), 8);
 
-		loadCharacters(text);
+		int width = 0;
+		for (int i = 0; i < text.length(); i++) {
+			width += font.getWidth(text.charAt(i));
+		}
+
+		bitmap = new ArrayBitmap2D(width, 8);
+
+		renderText(text);
 	}
 
-	private void loadCharacters(String text) {
+	private void renderText(String text) {
+		int left = 0;
+
 		for (int charIdx = 0; charIdx < text.length(); charIdx++) {
-			byte[] charBytes = font.getChar(text.charAt(charIdx));
+			char c = text.charAt(charIdx);
+			byte[] charBytes = font.getChar(c);
+			int charWidth = font.getWidth(c);
 			
 			for (int i = 0; i < 8; i++) {
 				for (int j = 0; j < 8; j++) {
 					boolean value = (charBytes[7 - j] & (1 << i)) > 0;
-					bitmap.set(charIdx * 8 + (7 - i), j, value);
+					bitmap.set(left + (7 - i), j, value);
 				}
 			}
+
+			left += charWidth;
 		}
 	}
 

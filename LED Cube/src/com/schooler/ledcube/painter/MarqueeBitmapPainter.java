@@ -1,24 +1,25 @@
 package com.schooler.ledcube.painter;
 
 import com.schooler.ledcube.CubeMain;
+import com.schooler.ledcube.bitmap.Bitmap2D;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 import com.schooler.ledcube.text.TextPlane;
 
-public class MarqueeTextPainter extends Painter {
+public class MarqueeBitmapPainter extends Painter {
 
 	private static final int LEAD_FRAMES = 28;
 	private static final int TRAIL_FRAMES = 0;
 	private static final int DIM = CubeMain.CUBE_DIM;
 
-	private TextPlane textPlane;
+	private Bitmap2D bitmap;
 	private int totalFrames;
 
-	public MarqueeTextPainter(CubeFrames cube, String text) {
+	public MarqueeBitmapPainter(CubeFrames cube, String text) {
 		super(cube);
 
-		this.textPlane = new TextPlane(text);
-		this.totalFrames = LEAD_FRAMES + text.length() * 8 + TRAIL_FRAMES;
+		this.bitmap = new TextPlane(text).getBitmap();
+		this.totalFrames = LEAD_FRAMES + bitmap.getWidth() + TRAIL_FRAMES;
 	}
 
 	@Override
@@ -49,11 +50,11 @@ public class MarqueeTextPainter extends Painter {
 			paintColumn(cubeX, cubeY, offset);
 		}
 
-		// paint the last face
-		cubeX = 0;
-		for (cubeY = DIM - 1; cubeY >= 0; cubeY--) {
-			paintColumn(cubeX, cubeY, offset);
-		}
+		// // paint the last face
+		// cubeX = 0;
+		// for (cubeY = DIM - 1; cubeY >= 0; cubeY--) {
+		// paintColumn(cubeX, cubeY, offset);
+		// }
 
 	}
 
@@ -64,7 +65,7 @@ public class MarqueeTextPainter extends Painter {
 		int bitmapX = wrappingIndex + offset;
 		for (int cubeZ = 0; cubeZ < DIM; cubeZ++) {
 			point.set(cubeX, cubeY, cubeZ);
-			getCube().set(point, textPlane.getBitmap().get(bitmapX, DIM - 1 - cubeZ));
+			getCube().set(point, bitmap.get(bitmapX, DIM - 1 - cubeZ));
 		}
 
 		point.recycle();

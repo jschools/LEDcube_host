@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.schooler.ledcube.CubeApplet;
+import com.schooler.ledcube.PlaybackController;
 
 public class KeyStrokeCommander {
 
