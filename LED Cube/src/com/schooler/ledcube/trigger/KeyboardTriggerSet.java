@@ -56,9 +56,7 @@ public class KeyboardTriggerSet implements TriggerSet {
 				break;
 			}
 
-			synchronized (triggers) {
-				triggers[TRIGGER_TRANSLATION] = TranslationTrigger.convertVector(temp);
-			}
+			triggers[TRIGGER_TRANSLATION] = TranslationTrigger.convertVector(temp);
 		}
 	}
 
@@ -71,15 +69,13 @@ public class KeyboardTriggerSet implements TriggerSet {
 	public int getTriggerValue(int channel) {
 		int value = 0;
 
-		synchronized (triggers) {
-			if (channel < 0 || channel >= triggers.length) {
-				throw new IllegalArgumentException("No trigger connected to channel " + channel);
-			}
-
-			value = triggers[channel];
-
-			triggers[channel] = 0;
+		if (channel < 0 || channel >= triggers.length) {
+			throw new IllegalArgumentException("No trigger connected to channel " + channel);
 		}
+
+		value = triggers[channel];
+
+		triggers[channel] = 0;
 
 		return value;
 	}

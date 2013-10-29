@@ -8,7 +8,7 @@ public class EdgeFunction implements BooleanFunction, TimeFunction {
 
 	@Override
 	public void setTime(double millis) {
-		dim = (int) (Math.sin(millis / 1000) * 8) + 1;
+		dim = (int) (Math.abs(Math.sin(millis / 1000) * 8)) + 1;
 	}
 
 	@Override
