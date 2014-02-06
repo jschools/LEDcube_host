@@ -10,7 +10,7 @@ import com.schooler.ledcube.util.CubeDebug;
 
 public class SerialCubeOutput implements CubeOutput {
 
-	private static final String PORT_NAME = "COM3";
+	private static final String PORT_NAME = "COM4";
 	private static final int BAUD_RATE = 115200;
 	private static final char PARITY = 'N';
 	private static final int DATA_BITS = 8;
@@ -72,7 +72,7 @@ public class SerialCubeOutput implements CubeOutput {
 			}
 		}
 	}
-	
+
 	@Override
 	public void flush() {
 		// no-op

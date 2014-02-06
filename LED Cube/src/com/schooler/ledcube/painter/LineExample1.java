@@ -1,15 +1,15 @@
 package com.schooler.ledcube.painter;
 
-import com.schooler.ledcube.geometry.Geometry;
+import com.schooler.ledcube.geometry.Lines;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 
-public class LinePainter extends Painter {
+public class LineExample1 extends Painter {
 
 	private static final Point3D a = Point3D.getInstance(0, 0, 0);
 	private static final Point3D b = Point3D.getInstance(0, 0, 0);
 
-	public LinePainter(CubeFrames cube) {
+	public LineExample1(CubeFrames cube) {
 		super(cube);
 	}
 
@@ -49,7 +49,7 @@ public class LinePainter extends Painter {
 			b.z = 7;
 		}
 
-		Geometry.drawLine(cube, a, b);
+		Lines.drawLine(cube, a, b);
 	}
 
 }

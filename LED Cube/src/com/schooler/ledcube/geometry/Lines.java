@@ -3,7 +3,7 @@ package com.schooler.ledcube.geometry;
 import com.schooler.ledcube.model.CubeFrames;
 import com.schooler.ledcube.model.Point3D;
 
-public class Geometry {
+public class Lines {
 
 	/**
 	Ported from ftp://ftp.isc.org/pub/usenet/comp.sources.unix/volume26/line3d
