@@ -12,7 +12,7 @@ public class CubeConfig {
 	public static Routine ROUTINE = new Routine() {
 		@Override
 		public Painter getPainter(CubeFrames cube) {
-			return new MarqueeBitmapPainter(cube, "Go Hawks!");
+			return new MarqueeBitmapPainter(cube, "Go Seahawks!");
 		}
 
 	};

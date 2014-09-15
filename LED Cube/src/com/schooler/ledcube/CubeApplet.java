@@ -97,7 +97,6 @@ public class CubeApplet extends PApplet implements CubeMain {
 
 		// rotate
 		rotateZ(zRot);
-
 		rotateX(xRot);
 		rotateY(-yRot);
 
